@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
-import 'package:tech_blog_v2/model/components_model.dart';
+import 'package:tech_blog_v2/model/components.dart';
 import 'package:tech_blog_v2/my_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog_v2/my_string.dart';

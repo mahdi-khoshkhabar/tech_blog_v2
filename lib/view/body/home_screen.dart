@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
-import 'package:tech_blog_v2/model/fake_data_model.dart';
-import 'package:tech_blog_v2/model/hash_tag_model.dart';
-import 'package:tech_blog_v2/model/items/blog_item_model.dart';
-import 'package:tech_blog_v2/model/items/item_bar_model.dart';
-import 'package:tech_blog_v2/model/items/podcast_item_model.dart';
-import 'package:tech_blog_v2/model/main_screen_poster_model.dart';
-import 'package:tech_blog_v2/model/mini_topic_model.dart';
+import 'package:tech_blog_v2/model/fake_data.dart';
+import 'package:tech_blog_v2/model/hash_tag.dart';
+import 'package:tech_blog_v2/model/items.dart';
+import 'package:tech_blog_v2/model/main_screen_poster.dart';
+import 'package:tech_blog_v2/model/mini_topic.dart';
 import 'package:tech_blog_v2/model/my_models.dart';
 import 'package:tech_blog_v2/my_string.dart';
 

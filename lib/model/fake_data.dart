@@ -1,6 +1,6 @@
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/my_models.dart';
-import 'package:tech_blog_v2/model/profile_model.dart';
+import 'package:tech_blog_v2/model/profile.dart';
 
 class FakeData {
   List hashTagList = [

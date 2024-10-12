@@ -15,14 +15,14 @@ class HashTagBox extends StatelessWidget {
               end: Alignment.centerRight),
           borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 10, 0),
+        padding: const EdgeInsets.fromLTRB(10, 0, 16, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Icon(
               Icons.tag,
               color: Colors.white,
-              size: 16,
+              size: 18,
             ),
             const SizedBox(
               width: 8,
@@ -34,7 +34,7 @@ class HashTagBox extends StatelessWidget {
                   color: Colors.white,
                   fontFamily: "dana",
                   fontWeight: FontWeight.bold,
-                  fontSize: 13),
+                  fontSize: 15),
             ),
           ],
         ),
