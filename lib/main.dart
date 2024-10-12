@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tech_blog_v2/my_colors.dart';
-import 'package:tech_blog_v2/splash_screen.dart';
+import 'package:tech_blog_v2/view/splash_screen.dart';
 
 void main() {
   //TODO research
