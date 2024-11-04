@@ -13,6 +13,7 @@ class MyStrings {
   static const String insertYourEmail = "Please Enter Your Email";
   static const String activateCode = "Enter Activation Code";
   static const String chooseCats = "Choose the Categories You Like";
+  static const String profileNotFound = "you haven't registered yet\nplease log in to your account";
   static const String welcom = """Welcome to Tak Blog
 
 You must register to submit articles and podcasts.""";

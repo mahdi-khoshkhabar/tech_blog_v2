@@ -43,9 +43,15 @@ class $AssetsImagesGen {
   AssetGenImage get bluePenIcon =>
       const AssetGenImage('assets/images/blue_pen_icon.png');
 
+  /// File path: assets/images/down-up-arrow-svg.svg
+  String get downUpArrowSvg => 'assets/images/down-up-arrow-svg.svg';
+
   /// File path: assets/images/down_cat_arrow_icon.png
   AssetGenImage get downCatArrowIcon =>
       const AssetGenImage('assets/images/down_cat_arrow_icon.png');
+
+  /// File path: assets/images/down_square_svg.svg
+  String get downSquareSvg => 'assets/images/down_square_svg.svg';
 
   /// File path: assets/images/empty_state.png
   AssetGenImage get emptyState =>
@@ -96,7 +102,9 @@ class $AssetsImagesGen {
   List<dynamic> get values => [
         audiofileIcon,
         bluePenIcon,
+        downUpArrowSvg,
         downCatArrowIcon,
+        downSquareSvg,
         emptyState,
         hashtagIcon,
         logo,

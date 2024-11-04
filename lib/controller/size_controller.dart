@@ -15,6 +15,8 @@ class SizeController {
   final Size podcastItemPosterSize;
   final double bodySpaceBetween;
   final double screenPadding;
+  final double tcbotWidthSize;
+  final double downUpArrowWidthSize;
   final double bottomNavigationBarPaddingSize;
   final Size bottomNavigationBarBackground;
   SizeController(BuildContext context)
@@ -28,7 +30,9 @@ class SizeController {
         blogItemPosterSize = Size(MediaQuery.of(context).size.width / 2.7,
             MediaQuery.of(context).size.width / 2.7),
         podcastItemPosterSize = Size(MediaQuery.of(context).size.width / 2.7,
-            MediaQuery.of(context).size.width / 2.7);
+            MediaQuery.of(context).size.width / 2.7),
+        tcbotWidthSize = MediaQuery.of(context).size.width / 3.57,
+        downUpArrowWidthSize = MediaQuery.of(context).size.width / 10;
 
   Size miniTopicSize = const Size(0, 20);
   // Size bottomNavigationSize = const Size(0, 80);

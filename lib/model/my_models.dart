@@ -44,3 +44,9 @@ class PodCastModel {
       this.favoriteStatus,
       this.saveStatus});
 }
+
+class HashTagModel {
+  String hashTagString;
+  bool? favoriteStatues = false;
+  HashTagModel({required this.hashTagString, this.favoriteStatues});
+}

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/components.dart';
 import 'package:tech_blog_v2/model/fake_data.dart';
@@ -23,8 +22,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: SolidColors.backgroundColor,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(SizeController(context).size.width / 5,
-                0, SizeController(context).size.width / 5, 0),
+            padding: EdgeInsets.fromLTRB(size.width / 5, 0, size.width / 5, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -36,11 +34,14 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: spaceBetweenSize.height,
                 ),
-                MiniTopic(
-                  text: Text(
-                    MyStrings.imageProfileEdit,
+                SizedBox(
+                  width: double.infinity,
+                  child: MiniTopic(
+                    text: Text(
+                      MyStrings.imageProfileEdit,
+                    ),
+                    inputMainAxisAlignment: MainAxisAlignment.center,
                   ),
-                  inputMainAxisAlignment: MainAxisAlignment.center,
                 ),
                 SizedBox(
                   height: spaceBetweenSize.height * 3,
@@ -57,25 +58,33 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: spaceBetweenSize.height / 2,
                 ),
-
                 // email
                 Text(
                   FakeData().profileList.first.emailAddress,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      fontFamily: "dana",
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                      color: Colors.black),
+                    fontFamily: "dana",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(
-                  height: spaceBetweenSize.height * 3,
+                  height: spaceBetweenSize.height * 2,
                 ),
                 HorizontalDivider(),
-                profileButton(size, MyStrings.myFavBlog, () {}),
+                profileButton(size, MyStrings.myFavBlog, () {
+                  print("MyStrings.myFavBlog");
+                }),
                 HorizontalDivider(),
-                profileButton(size, MyStrings.myFavPodcast, () {}),
+                profileButton(size, MyStrings.myFavPodcast, () {
+                  print("MyStrings.myFavPodcast");
+                }),
                 HorizontalDivider(),
-                profileButton(size, MyStrings.logOut, () {}),
+                profileButton(size, MyStrings.logOut, () {
+                  print("MyStrings.logOut");
+                }),
                 SizedBox(
                   height: spaceBetweenSize.height * 4,
                 )

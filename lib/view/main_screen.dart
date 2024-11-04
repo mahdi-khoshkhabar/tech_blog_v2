@@ -9,13 +9,22 @@ import 'package:tech_blog_v2/model/hash_tag.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/my_models.dart';
 import 'package:tech_blog_v2/my_colors.dart';
+import 'package:tech_blog_v2/view/body/empthy_profile_screen.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
-import 'package:tech_blog_v2/view/sign_up_screen.dart';
+import 'package:tech_blog_v2/view/body/profile_screen.dart';
+import 'package:tech_blog_v2/view/sign_up_for_submit_article_screen.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({
     super.key,
   });
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int selectedBody = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,7 @@ class MainScreen extends StatelessWidget {
     Size podCastItemPosterSize = SizeController(context).podcastItemPosterSize;
     List<BlogItem> blogitemList = [];
     List<PodcastItem> podCastItemList = [];
-    List<HashTagBox> hashTagBoxList = [];
+    List<SelectableHashTagBox> hashTagBoxList = [];
     double borderRadiusController = 20;
 
     // builder for blog item layout on screen
@@ -61,9 +70,13 @@ class MainScreen extends StatelessWidget {
       ));
     }
     //builder for hash tag box layout on screen
-    for (int index = 0; index < FakeData().hashTagList.length; index++) {
-      (hashTagBoxList
-          .add(HashTagBox(hashTagBoxText: FakeData().hashTagList[index])));
+    for (int index = 0; index < FakeData().hashTagStringList.length; index++) {
+      (hashTagBoxList.add(SelectableHashTagBox(
+        hashTagBox: HashTagBox(
+            hashTagModel: HashTagModel(
+                hashTagString: FakeData().hashTagStringList[index])),
+        favoriteHashTagBoxList: const [],
+      )));
     }
     return Scaffold(
       backgroundColor: SolidColors.backgroundColor,
@@ -96,13 +109,20 @@ class MainScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: HomeScreen(
-                hashTagBoxList: hashTagBoxList,
-                blogitemList: blogitemList,
-                blogItemPosterSize: blogItemPosterSize,
-                podCastItemList: podCastItemList,
-                podCastItemPosterSize: podCastItemPosterSize),
-          ),
+              child: IndexedStack(
+            index: selectedBody,
+            children: [
+              HomeScreen(
+                  hashTagBoxList: hashTagBoxList,
+                  blogitemList: blogitemList,
+                  blogItemPosterSize: blogItemPosterSize,
+                  podCastItemList: podCastItemList,
+                  podCastItemPosterSize: podCastItemPosterSize),
+              FakeData().profileList.isNotEmpty
+                  ? const ProfileScreen()
+                  : const EmpthyProfileScreen()
+            ],
+          )),
           //bottom navigation bar
           Positioned(
             bottom: 0,
@@ -130,16 +150,22 @@ class MainScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      // home button
                       IconButton(
-                          onPressed: () {
-                            if (kDebugMode) {
-                              print("icons.user");
-                            }
-                          },
-                          icon: ImageIcon(
-                            Assets.icons.user.provider(),
-                            color: Colors.white,
-                          )),
+                        onPressed: () {
+                          if (kDebugMode) {
+                            print("icons.home");
+                          }
+                          setState(() {
+                            selectedBody = 0;
+                          });
+                        },
+                        icon: ImageIcon(
+                          Assets.icons.home.provider(),
+                          color: Colors.white,
+                        ),
+                      ),
+                      // write button
                       IconButton(
                           onPressed: () {
                             Navigator.of(context).push(CupertinoPageRoute(
@@ -152,17 +178,20 @@ class MainScreen extends StatelessWidget {
                             Assets.icons.write.provider(),
                             color: Colors.white,
                           )),
+                      // user button
                       IconButton(
-                        onPressed: () {
-                          if (kDebugMode) {
-                            print("icons.home");
-                          }
-                        },
-                        icon: ImageIcon(
-                          Assets.icons.home.provider(),
-                          color: Colors.white,
-                        ),
-                      ),
+                          onPressed: () {
+                            if (kDebugMode) {
+                              print("icons.user");
+                            }
+                            setState(() {
+                              selectedBody = 1;
+                            });
+                          },
+                          icon: ImageIcon(
+                            Assets.icons.user.provider(),
+                            color: Colors.white,
+                          )),
                     ],
                   ),
                 ),

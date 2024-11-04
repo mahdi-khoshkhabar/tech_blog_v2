@@ -16,7 +16,10 @@ class SolidColors {
   static const Color posterSubTitle = Color.fromARGB(180, 255, 255, 255);
   static const Color posterTitle = Color.fromARGB(255, 255, 255, 255);
   static const Color primaryColor = Color.fromARGB(255, 68, 4, 87);
-  static const Color profileButtonSplashColor = Color.fromARGB(140, 68, 4, 87);
+  static const Color primaryTextColor = Color(0xFF420457);
+  static const Color primaryOverlayColor = Color.fromARGB(255, 98, 4, 117);
+  static const Color profileButtonSplashColor =
+      Color.fromARGB(139, 88, 39, 103);
   static const Color colorTitle = Color.fromARGB(255, 40, 107, 184);
   static const Color textTitle = Color.fromARGB(255, 0, 0, 0);
   static const Color scaffoldBg = Color.fromARGB(255, 255, 255, 255);
@@ -31,7 +34,7 @@ class SolidColors {
   static const Color hashTag = Color.fromARGB(255, 255, 255, 255);
   static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
   static const Color dividerColor = Color.fromARGB(255, 112, 112, 112);
-  static const Color hintText = Color.fromARGB(255, 133, 133, 133);
+  static const Color hintText = Color.fromARGB(146, 107, 107, 107);
   static const Color surface = Color.fromARGB(255, 242, 242, 242);
   static const Color greyColor = Color.fromARGB(255, 156, 156, 156);
   static const Color lightIcon = Color.fromARGB(255, 255, 255, 255);
@@ -52,12 +55,16 @@ class GradientColors {
     Color.fromARGB(255, 68, 4, 87)
   ];
   static const List<Color> bottomNavBackground = [
-    Color.fromARGB(0, 255, 255, 255),
-    Color.fromARGB(255, 255, 255, 255)
+    Color.fromARGB(0, 255, 255, 225),
+    Color.fromARGB(255, 255, 255, 255),
   ];
   static const List<Color> tags = [
     Color.fromARGB(255, 0, 0, 0),
-    Color.fromARGB(255, 63, 63, 63)
+    Color.fromARGB(255, 63, 63, 63),
+  ];
+  static const List<Color> favoriteTags = [
+    Color.fromARGB(255, 0, 255, 217),
+    Color.fromARGB(255, 255, 0, 183),
   ];
   static const List<Color> blogPost = [
     Color.fromARGB(255, 0, 0, 0),

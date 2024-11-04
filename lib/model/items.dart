@@ -52,6 +52,7 @@ class PodcastItem extends StatelessWidget {
     );
   }
 }
+
 class ItemPoster extends StatelessWidget {
   ItemPoster({
     super.key,
@@ -197,11 +198,13 @@ class ItemBar extends StatelessWidget {
     this.itemSize,
     this.itemCount,
     required this.itemBarObjectList,
+    required this.voidCallback,
   });
 
   final Size? itemSize;
   final int? itemCount;
-  List itemBarObjectList = [];
+  final VoidCallback voidCallback;
+  List<Widget> itemBarObjectList = [];
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
-import 'package:tech_blog_v2/model/components.dart';
+import 'package:tech_blog_v2/model/bottom_sheets.dart';
+import 'package:tech_blog_v2/model/buttons.dart';
 import 'package:tech_blog_v2/my_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog_v2/my_string.dart';
@@ -30,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
                 // tech robot logo
                 SvgPicture.asset(
                   Assets.images.tcbot,
-                  width: MediaQuery.of(context).size.width / 3,
+                  width: SizeController(context).tcbotWidthSize,
                 ),
                 SizedBox(
                   height: spaceBetweenSize.height,
@@ -52,11 +54,15 @@ class SignUpScreen extends StatelessWidget {
                   height: spaceBetweenSize.height * 5,
                 ),
                 // lets go button
-                LetsGoButton(size: size),
+                MyPurpleButton(
+                  inputString: MyStrings.writeScreenSingUpButtonText,
+                  function: () {
+                    showEmailBottomSheet(context, size);
+                  },
+                ),
               ],
             ),
           ),
         ));
   }
 }
-

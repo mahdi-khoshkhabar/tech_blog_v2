@@ -3,15 +3,16 @@ import 'package:tech_blog_v2/model/my_models.dart';
 import 'package:tech_blog_v2/model/profile.dart';
 
 class FakeData {
-  List hashTagList = [
+  List hashTagStringList = [
     "Java",
     "Web Programming",
-    "Mahdi Khoshkhabar Radio",
+    "Radio",
     "Flutter",
     "Figma",
     "Python",
     "C++",
   ];
+  List<HashTagModel> hashTagList = [];
   List<BlogModel> blogList = [
     BlogModel(
         id: 0,
@@ -533,11 +534,6 @@ class FakeData {
       ],
     ),
   ];
-  List<ProfileModel> profileList = [
-    ProfileModel(
-      name: "Mahdi",
-      lastName: "Khoshkhabar",
-      emailAddress: "mahdikhoshkhabar6@gmail.com",
-    ),
-  ];
+  List<ProfileModel> profileList = [];
+  List<HashTagModel> favoriteHashTagList = [];
 }

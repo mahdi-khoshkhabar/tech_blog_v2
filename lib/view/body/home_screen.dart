@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     required this.podCastItemPosterSize,
   });
 
-  final List<HashTagBox> hashTagBoxList;
+  final List<SelectableHashTagBox> hashTagBoxList;
   final List<BlogItem> blogitemList;
   final Size blogItemPosterSize;
   final List<PodcastItem> podCastItemList;
@@ -46,14 +46,19 @@ class HomeScreen extends StatelessWidget {
           // hash tag bar
           ItemBar(
             itemBarObjectList: hashTagBoxList,
+            voidCallback: () {},
           ),
           SizedBox(
             height: SizeController(context).bodySpaceBetween,
           ),
           //mini topic for blogs
-          const MiniTopic(
-            text: Text(
-              MyStrings.viewHotestBlog,
+          Padding(
+            padding:
+                EdgeInsets.only(left: SizeController(context).screenPadding),
+            child: const MiniTopic(
+              text: Text(
+                MyStrings.viewHotestBlog,
+              ),
             ),
           ),
           SizedBox(
@@ -62,17 +67,22 @@ class HomeScreen extends StatelessWidget {
           //blog item bar
           ItemBar(
             itemBarObjectList: blogitemList,
-            itemSize: Size(blogItemPosterSize.width,
-                blogItemPosterSize.height + 50),
+            itemSize:
+                Size(blogItemPosterSize.width, blogItemPosterSize.height + 50),
             itemCount: 5,
+            voidCallback: () {},
           ),
           SizedBox(
             height: SizeController(context).bodySpaceBetween,
           ),
           //mini topic for podcasts
-          const MiniTopic(
-            text: Text(
-              MyStrings.viewHotestPodCasts,
+          Padding(
+            padding:
+                EdgeInsets.only(left: SizeController(context).screenPadding),
+            child: const MiniTopic(
+              text: Text(
+                MyStrings.viewHotestPodCasts,
+              ),
             ),
           ),
           SizedBox(
@@ -81,19 +91,16 @@ class HomeScreen extends StatelessWidget {
           //podCast item bar
           ItemBar(
             itemBarObjectList: podCastItemList,
-            itemSize: Size(podCastItemPosterSize.width,
-                podCastItemPosterSize.height + 50),
+            itemSize: Size(
+                podCastItemPosterSize.width, podCastItemPosterSize.height + 50),
             itemCount: 5,
+            voidCallback: () {},
           ),
           // end of screen sized box
           SizedBox(
             height: SizeController(context).bodySpaceBetween +
-                SizeController(context)
-                    .bottomNavigationBarBackground
-                    .height,
-            width: SizeController(context)
-                .bottomNavigationBarBackground
-                .width,
+                SizeController(context).bottomNavigationBarBackground.height,
+            width: SizeController(context).bottomNavigationBarBackground.width,
           ),
         ],
       ),

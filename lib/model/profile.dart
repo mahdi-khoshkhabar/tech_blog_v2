@@ -5,6 +5,7 @@ class ProfileModel {
   String lastName;
   String emailAddress;
   Image? profileImage;
+  
   ProfileModel({
     required this.name,
     required this.lastName,

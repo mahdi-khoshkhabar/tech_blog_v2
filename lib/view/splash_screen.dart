@@ -17,12 +17,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 2650)).then(
+    // Future.delayed(const Duration(milliseconds: 1)).then(
+      Future.delayed(const Duration(milliseconds: 2650)).then(
       (value) {
         // Navigator.of(context)
         //     .pushReplacement(MaterialPageRoute(builder: (context) => const MainScreen()));
+
         if (mounted) {
           Navigator.of(context).pushReplacement(
+              // CupertinoPageRoute(builder: (context) => const CompleteInfoScreen()));
               CupertinoPageRoute(builder: (context) => const MainScreen()));
         }
       },

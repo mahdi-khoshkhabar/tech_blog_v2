@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:tech_blog_v2/model/my_models.dart';
 import 'package:tech_blog_v2/my_colors.dart';
 
 class HashTagBox extends StatelessWidget {
-  const HashTagBox({super.key, required this.hashTagBoxText});
-  final String hashTagBoxText;
+  const HashTagBox({
+    super.key,
+    required this.hashTagModel,
+    this.textColor,
+  });
+  final HashTagModel hashTagModel;
+  final Color? textColor;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 50,
       decoration: BoxDecoration(
-          gradient: const LinearGradient(
-              colors: GradientColors.tags,
+          gradient: LinearGradient(
+              colors: hashTagModel.favoriteStatues == true
+                  ? GradientColors.favoriteTags
+                  : GradientColors.tags,
               begin: Alignment.centerLeft,
               end: Alignment.centerRight),
           borderRadius: BorderRadius.circular(16)),
@@ -19,17 +28,17 @@ class HashTagBox extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(
+            Icon(
               Icons.tag,
-              color: Colors.white,
+              color: textColor ?? Colors.white,
               size: 18,
             ),
-            const SizedBox(
-              width: 8,
-            ),
+            // const SizedBox(
+            //   width: 8,
+            // ),
             Text(
               textAlign: TextAlign.center,
-              hashTagBoxText,
+              hashTagModel.hashTagString,
               style: const TextStyle(
                   color: Colors.white,
                   fontFamily: "dana",
@@ -39,6 +48,51 @@ class HashTagBox extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SelectableHashTagBox extends StatefulWidget {
+  const SelectableHashTagBox({
+    super.key,
+    required this.hashTagBox,
+    required this.favoriteHashTagBoxList,
+    this.onFavoriteToggle,
+  });
+
+  final HashTagBox hashTagBox;
+  final List<HashTagModel> favoriteHashTagBoxList;
+  final VoidCallback? onFavoriteToggle;
+
+  @override
+  State<SelectableHashTagBox> createState() => _SelectableHashTagBoxState();
+}
+
+class _SelectableHashTagBoxState extends State<SelectableHashTagBox> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        // تغییر وضعیت favorite
+        if (widget.hashTagBox.hashTagModel.favoriteStatues != true) {
+          widget.hashTagBox.hashTagModel.favoriteStatues = true;
+          if (!widget.favoriteHashTagBoxList
+              .contains(widget.hashTagBox.hashTagModel)) {
+            widget.favoriteHashTagBoxList.add(widget.hashTagBox.hashTagModel);
+          }
+        } else {
+          widget.hashTagBox.hashTagModel.favoriteStatues = false;
+          widget.favoriteHashTagBoxList.remove(widget.hashTagBox.hashTagModel);
+        }
+
+        // فراخوانی تابع برای به‌روزرسانی صفحه
+        if (widget.onFavoriteToggle != null) {
+          widget.onFavoriteToggle!();
+        }
+
+        setState(() {});
+      },
+      child: widget.hashTagBox,
     );
   }
 }

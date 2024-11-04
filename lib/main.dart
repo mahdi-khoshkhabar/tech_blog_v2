@@ -13,7 +13,16 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: SolidColors.systemNavigationBarColor,
       systemNavigationBarIconBrightness: Brightness.dark));
-  runApp(MyApp());
+
+  // محدود کردن جهت‌گیری صفحه به حالت پرتره
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MyApp());
+  });
+
 }
 
 class MyApp extends StatelessWidget {
