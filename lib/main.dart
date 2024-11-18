@@ -22,7 +22,6 @@ void main() {
   ]).then((_) {
     runApp(MyApp());
   });
-
 }
 
 class MyApp extends StatelessWidget {

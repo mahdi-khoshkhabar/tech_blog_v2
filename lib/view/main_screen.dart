@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
         hashTagBox: HashTagBox(
             hashTagModel: HashTagModel(
                 hashTagString: FakeData().hashTagStringList[index])),
-        favoriteHashTagBoxList: const [],
+        hashTagBoxList: const [],
       )));
     }
     return Scaffold(

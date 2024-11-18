@@ -39,6 +39,8 @@ class HashTagBox extends StatelessWidget {
             Text(
               textAlign: TextAlign.center,
               hashTagModel.hashTagString,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                   color: Colors.white,
                   fontFamily: "dana",
@@ -56,12 +58,12 @@ class SelectableHashTagBox extends StatefulWidget {
   const SelectableHashTagBox({
     super.key,
     required this.hashTagBox,
-    required this.favoriteHashTagBoxList,
+    required this.hashTagBoxList,
     this.onFavoriteToggle,
   });
 
   final HashTagBox hashTagBox;
-  final List<HashTagModel> favoriteHashTagBoxList;
+  final List<HashTagModel> hashTagBoxList;
   final VoidCallback? onFavoriteToggle;
 
   @override
@@ -76,13 +78,12 @@ class _SelectableHashTagBoxState extends State<SelectableHashTagBox> {
         // تغییر وضعیت favorite
         if (widget.hashTagBox.hashTagModel.favoriteStatues != true) {
           widget.hashTagBox.hashTagModel.favoriteStatues = true;
-          if (!widget.favoriteHashTagBoxList
-              .contains(widget.hashTagBox.hashTagModel)) {
-            widget.favoriteHashTagBoxList.add(widget.hashTagBox.hashTagModel);
+          if (!widget.hashTagBoxList.contains(widget.hashTagBox.hashTagModel)) {
+            widget.hashTagBoxList.add(widget.hashTagBox.hashTagModel);
           }
         } else {
           widget.hashTagBox.hashTagModel.favoriteStatues = false;
-          widget.favoriteHashTagBoxList.remove(widget.hashTagBox.hashTagModel);
+          widget.hashTagBoxList.remove(widget.hashTagBox.hashTagModel);
         }
 
         // فراخوانی تابع برای به‌روزرسانی صفحه

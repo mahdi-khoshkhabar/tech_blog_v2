@@ -35,24 +35,18 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
         hashTagBox: HashTagBox(
             hashTagModel: HashTagModel(
                 hashTagString: FakeData().hashTagStringList[index])),
-        // hashTagBox: HashTagBox(
-        //   hashTagModel: HashTagModel(
-        //     hashTagString: FakeData().hashTagStringList[index],
-        //   ),
-        // ),
-        favoriteHashTagBoxList: favoriteHashTagList,
+        hashTagBoxList: favoriteHashTagList,
         onFavoriteToggle: _updateFavoriteHashTags,
       ));
     }
   }
 
-  //TODO: must study
   void _updateFavoriteHashTags() {
     setState(() {
       selectableFavoriteHashTagBoxList = favoriteHashTagList
           .map((hashTag) => SelectableHashTagBox(
                 hashTagBox: HashTagBox(hashTagModel: hashTag),
-                favoriteHashTagBoxList: favoriteHashTagList,
+                hashTagBoxList: favoriteHashTagList,
                 onFavoriteToggle: _updateFavoriteHashTags,
               ))
           .toList();
@@ -70,9 +64,7 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
       // extendBodyBehindAppBar: false,
       // primary: false,
       resizeToAvoidBottomInset: false,
-
       backgroundColor: SolidColors.backgroundColor,
-
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -131,7 +123,6 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
                 fontSize: 16,
                 color: SolidColors.primaryTextColor),
           ),
-
           HashTagGridView(
             myList: selectableHashTagBoxList,
           ),
