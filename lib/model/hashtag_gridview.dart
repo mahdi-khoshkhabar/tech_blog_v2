@@ -11,7 +11,7 @@ class HashTagGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 150,
+      height: 100,
       child: GridView.builder(
         // shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
@@ -21,7 +21,7 @@ class HashTagGridView extends StatelessWidget {
             mainAxisSpacing: 0,
             crossAxisSpacing: 10,
             // crossAxisSpacing: 4,
-            childAspectRatio: 0.34,
+            childAspectRatio: 0.22,
             crossAxisCount: 2),
         itemBuilder: (context, index) {
           return Padding(
