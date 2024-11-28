@@ -6,8 +6,6 @@ import 'package:tech_blog_v2/my_colors.dart';
 import 'package:tech_blog_v2/view/splash_screen.dart';
 
 void main() {
-  //TODO research
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: SolidColors.statusBarColor,
       statusBarIconBrightness: Brightness.dark,

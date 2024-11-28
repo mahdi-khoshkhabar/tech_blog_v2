@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/app_bar_icon.dart';
+import 'package:tech_blog_v2/model/drawer.dart';
 import 'package:tech_blog_v2/model/fake_data.dart';
 import 'package:tech_blog_v2/model/hash_tag.dart';
 import 'package:tech_blog_v2/model/items.dart';
@@ -22,6 +23,8 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
+final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class _MainScreenState extends State<MainScreen> {
   int selectedBody = 0;
@@ -79,23 +82,29 @@ class _MainScreenState extends State<MainScreen> {
       )));
     }
     return Scaffold(
+      key: _key,
+      drawer: const MyDrawer(),
       backgroundColor: SolidColors.backgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         // elevation: 1,
         shadowColor: SolidColors.appBarShadowColor,
         backgroundColor: SolidColors.appBarBackgroundColor,
         foregroundColor: SolidColors.appBarforegroundColor,
         surfaceTintColor: SolidColors.appBarsurfaceTintColor,
         actions: [
+          // menu botton
           AppBarIcons(
             inputIcon: Icons.menu_rounded,
             function: () {
+              _key.currentState!.openDrawer();
               if (kDebugMode) {
                 print("Icons.menu_rounded");
               }
             },
           ),
           Expanded(child: Assets.images.logo.image()),
+          // search botton
           AppBarIcons(
             inputIcon: CupertinoIcons.search,
             function: () {
