@@ -9,7 +9,7 @@ import 'package:tech_blog_v2/model/fake_data.dart';
 import 'package:tech_blog_v2/model/hash_tag.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/my_models.dart';
-import 'package:tech_blog_v2/my_colors.dart';
+import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/view/body/empthy_profile_screen.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
 import 'package:tech_blog_v2/view/body/profile_screen.dart';

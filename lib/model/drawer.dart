@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
-import 'package:tech_blog_v2/my_colors.dart';
-import 'package:tech_blog_v2/my_string.dart';
+import 'package:tech_blog_v2/utils/my_colors.dart';
+import 'package:tech_blog_v2/utils/my_string.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({

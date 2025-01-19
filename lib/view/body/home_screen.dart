@@ -6,7 +6,7 @@ import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/main_screen_poster.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
 import 'package:tech_blog_v2/model/my_models.dart';
-import 'package:tech_blog_v2/my_string.dart';
+import 'package:tech_blog_v2/utils/my_string.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

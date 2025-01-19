@@ -5,8 +5,8 @@ import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/components.dart';
 import 'package:tech_blog_v2/model/fake_data.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
-import 'package:tech_blog_v2/my_colors.dart';
-import 'package:tech_blog_v2/my_string.dart';
+import 'package:tech_blog_v2/utils/my_colors.dart';
+import 'package:tech_blog_v2/utils/my_string.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
