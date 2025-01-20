@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +16,11 @@ import 'package:tech_blog_v2/view/body/empthy_profile_screen.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
 import 'package:tech_blog_v2/view/body/profile_screen.dart';
 import 'package:tech_blog_v2/view/sign_up_for_submit_article_screen.dart';
+import 'package:get/get.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({
-    super.key,
-  });
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-final GlobalKey<ScaffoldState> _key = GlobalKey();
-
-class _MainScreenState extends State<MainScreen> {
-  int selectedBody = 0;
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
+  RxInt selectedBody = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +75,6 @@ class _MainScreenState extends State<MainScreen> {
       )));
     }
     return Scaffold(
-      key: _key,
       drawer: const MyDrawer(),
       backgroundColor: SolidColors.backgroundColor,
       appBar: AppBar(
@@ -97,8 +89,9 @@ class _MainScreenState extends State<MainScreen> {
           AppBarIcons(
             inputIcon: Icons.menu_rounded,
             function: () {
-              _key.currentState!.openDrawer();
+
               if (kDebugMode) {
+                //TODO: add open drawer function
                 print("Icons.menu_rounded");
               }
             },
@@ -118,19 +111,21 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-              child: IndexedStack(
-            index: selectedBody,
-            children: [
-              HomeScreen(
-                  hashTagBoxList: hashTagBoxList,
-                  blogitemList: blogitemList,
-                  blogItemPosterSize: blogItemPosterSize,
-                  podCastItemList: podCastItemList,
-                  podCastItemPosterSize: podCastItemPosterSize),
-              FakeData().profileList.isNotEmpty
-                  ? const ProfileScreen()
-                  : const EmpthyProfileScreen()
-            ],
+              child: Obx(
+            () => IndexedStack(
+              index: selectedBody.value,
+              children: [
+                HomeScreen(
+                    hashTagBoxList: hashTagBoxList,
+                    blogitemList: blogitemList,
+                    blogItemPosterSize: blogItemPosterSize,
+                    podCastItemList: podCastItemList,
+                    podCastItemPosterSize: podCastItemPosterSize),
+                FakeData().profileList.isNotEmpty
+                    ? const ProfileScreen()
+                    : const EmpthyProfileScreen()
+              ],
+            ),
           )),
           //bottom navigation bar
           Positioned(
@@ -165,9 +160,7 @@ class _MainScreenState extends State<MainScreen> {
                           if (kDebugMode) {
                             print("icons.home");
                           }
-                          setState(() {
-                            selectedBody = 0;
-                          });
+                          selectedBody.value = 0;
                         },
                         icon: ImageIcon(
                           Assets.icons.home.provider(),
@@ -193,9 +186,8 @@ class _MainScreenState extends State<MainScreen> {
                             if (kDebugMode) {
                               print("icons.user");
                             }
-                            setState(() {
-                              selectedBody = 1;
-                            });
+
+                            selectedBody.value = 1;
                           },
                           icon: ImageIcon(
                             Assets.icons.user.provider(),
