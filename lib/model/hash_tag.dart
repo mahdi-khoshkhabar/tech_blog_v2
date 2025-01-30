@@ -38,7 +38,7 @@ class HashTagBox extends StatelessWidget {
             // ),
             Text(
               textAlign: TextAlign.center,
-              hashTagModel.hashTagString,
+              hashTagModel.title!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(

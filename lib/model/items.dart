@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
+import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/model/my_models.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
@@ -28,8 +29,7 @@ class PodcastItem extends StatelessWidget {
           size: size,
           itemPosterSize: posterSize,
           auther: podCastModel.hosts.first,
-          posterImage: podCastModel.poster?.image ??
-              Assets.images.singlePlaceHolder.provider(),
+          posterImage: podCastModel.poster ,
           showAuthor: true,
           ownerTextDirection: TextDirection.ltr,
         ),
@@ -58,7 +58,7 @@ class ItemPoster extends StatelessWidget {
     super.key,
     required this.size,
     required this.auther,
-    this.usage,
+    this.view,
     this.itemPosterSize,
     this.posterImage,
     this.showAuthor,
@@ -67,9 +67,9 @@ class ItemPoster extends StatelessWidget {
   });
   final Size size;
   final Size? itemPosterSize;
-  final ImageProvider? posterImage;
+  final Image? posterImage;
   final String auther;
-  final int? usage;
+  final String? view;
   final TextDirection? ownerTextDirection;
   bool? showAuthor = false;
   bool? showViews = false;
@@ -88,7 +88,7 @@ class ItemPoster extends StatelessWidget {
               borderRadius: BorderRadius.circular(borderRadiusController),
               image: DecorationImage(
                   image:
-                      posterImage ?? Assets.images.singlePlaceHolder.provider(),
+                      posterImage!.image ,
                   fit: BoxFit.cover),
             ),
             foregroundDecoration: BoxDecoration(
@@ -139,7 +139,7 @@ class ItemPoster extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            usage.toString(),
+                            view.toString(),
                             style: const TextStyle(color: Colors.white),
                           ),
                           const SizedBox(
@@ -234,11 +234,11 @@ class BlogItem extends StatelessWidget {
   BlogItem({
     super.key,
     this.titleSize,
-    required this.blogmodel,
+    required this.articleModel,
     required this.posterSize,
     this.textDirection,
   });
-  final BlogModel blogmodel;
+  final ArticleModel articleModel;
   final Size posterSize;
   final Size? titleSize;
   TextDirection? textDirection;
@@ -250,10 +250,9 @@ class BlogItem extends StatelessWidget {
         ItemPoster(
           size: SizeController(context).size,
           itemPosterSize: posterSize,
-          auther: blogmodel.author ?? "",
-          usage: blogmodel.viewNumber,
-          posterImage: blogmodel.poster?.image ??
-              Assets.images.singlePlaceHolder.provider(),
+          auther: articleModel.author ?? "",
+          view: articleModel.view,
+          posterImage: Image.network(articleModel.image!),
           showAuthor: true,
           showViews: true,
         ),
@@ -262,7 +261,7 @@ class BlogItem extends StatelessWidget {
         ),
         ItemTitle(
           itemTitle: Text(
-            blogmodel.title ?? MyStrings.blogItemDefaultTitle,
+            articleModel.title ?? MyStrings.blogItemDefaultTitle,
             style: const TextStyle(
               fontFamily: "Dana",
               fontWeight: FontWeight.bold,

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
-import 'package:tech_blog_v2/model/fake_data.dart';
+import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/model/hash_tag.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/main_screen_poster.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
-import 'package:tech_blog_v2/model/my_models.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,15 +30,18 @@ class HomeScreen extends StatelessWidget {
         children: [
           //main screen poster
           MainScreenPoster(
-            size: SizeController(context).size,
-            blogModel: BlogModel(
-              id: FakeData().blogList.first.id,
-              author: FakeData().blogList.first.author,
-              title: FakeData().blogList.first.title,
-              poster: FakeData().blogList.first.poster,
-              viewNumber: FakeData().blogList.first.viewNumber,
-            ),
-          ),
+              size: SizeController(context).size,
+              articleModel: ArticleModel(
+                id: "0",
+                author: "Mahdi Khoshkhabar",
+                catId: "02",
+                catName: "AI",
+                createdAt: "12/10/2024",
+                image:
+                    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fdeveloper.nvidia.com%2Fblog%2Fopenai-presents-gpt-3-a-175-billion-parameters-language-model%2F&psig=AOvVaw3rYrP2vJClepN9cFNaE4eX&ust=1738351711051000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDUwfeWnosDFQAAAAAdAAAAABAE",
+                title: "What is artificial intelligence (AI)?",
+                view: "2645",
+              )),
           SizedBox(
             height: SizeController(context).bodySpaceBetween,
           ),

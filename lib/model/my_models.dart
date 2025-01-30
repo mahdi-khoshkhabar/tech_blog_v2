@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
-class BlogModel {
-  int id;
-  Image? poster;
-  String? title;
-  String? blogContent;
-  String? author;
-  List<String>? hashTags;
-  bool? favoriteStatus = false;
-  bool? saveStatus = false;
-  int? viewNumber = 0;
-  BlogModel({
-    required this.id,
-    this.poster,
-    this.title,
-    this.author,
-    this.blogContent,
-    this.hashTags,
-    this.favoriteStatus,
-    this.saveStatus,
-    this.viewNumber,
-  });
-}
+// class BlogModel {
+//   int id;
+//   Image? poster;
+//   String? title;
+//   String? blogContent;
+//   String? author;
+//   List<String>? hashTags;
+//   bool? favoriteStatus = false;
+//   bool? saveStatus = false;
+//   int? viewNumber = 0;
+//   BlogModel({
+//     required this.id,
+//     this.poster,
+//     this.title,
+//     this.author,
+//     this.blogContent,
+//     this.hashTags,
+//     this.favoriteStatus,
+//     this.saveStatus,
+//     this.viewNumber,
+//   });
+// }
 
 class PodCastModel {
   int id;
@@ -46,7 +46,13 @@ class PodCastModel {
 }
 
 class HashTagModel {
-  String hashTagString;
+  String? id;
+  String? title;
   bool? favoriteStatues = false;
-  HashTagModel({required this.hashTagString, this.favoriteStatues});
+  HashTagModel({required this.id, required this.title, this.favoriteStatues});
+
+  HashTagModel.fromJson(Map<String, dynamic> element) {
+    id = element["id"];
+    title = element["title"];
+  }
 }

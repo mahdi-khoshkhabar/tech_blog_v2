@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
+import 'package:tech_blog_v2/model/components.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 
@@ -24,13 +28,31 @@ class MyDrawer extends StatelessWidget {
               Assets.images.logo.path,
               scale: 2.5,
             )),
+            //user profile
             selectableRow(myText: MyStrings.userProfile, myVoid: () {}),
             const Divider(),
-            selectableRow(myText: MyStrings.aboutTec, myVoid: () {}),
+            //ablout techblog
+            selectableRow(
+                myText: MyStrings.aboutTec,
+                myVoid: () {
+                  launchUrlFunc(MyStrings.techBlogWebPageUrl, context);
+                }),
             const Divider(),
-            selectableRow(myText: MyStrings.shareTec, myVoid: () {}),
+            //share techblog
+            selectableRow(
+                myText: MyStrings.shareTec,
+                myVoid: () async {
+                  log("share sucessful");
+                  await Share.share(
+                      subject: MyStrings.shareSubject, MyStrings.shareContext);
+                }),
             const Divider(),
-            selectableRow(myText: MyStrings.tecIngithub, myVoid: () {}),
+            //techblog on github
+            selectableRow(
+                myText: MyStrings.tecIngithub,
+                myVoid: () {
+                  launchUrlFunc(MyStrings.techBlogGithubUrl, context);
+                }),
           ],
         ),
       ),

@@ -1,6 +1,12 @@
 class MyStrings {
+  //dwawer
+  static const String shareContext =
+      "I'm using Tak Blog, it's so cool, you should check it out too!\n\nwww.sasansafari.com";
+  static const String shareSubject = "Welcome To Tak Blog 😊";
   static const String techBlogGithubUrl =
       "https://github.com/sasansafari/techblog";
+  static const String techBlogWebPageUrl = "https://takblog.net";
+
   static const String viewHotestBlog = "View the hottest blogs";
   static const String viewHotestPodCasts = "View the hottest podcasts";
   static const String relatedArticle = "Related Articles";
@@ -13,19 +19,13 @@ class MyStrings {
   static const String insertYourEmail = "Please Enter Your Email";
   static const String activateCode = "Enter Activation Code";
   static const String chooseCats = "Choose the Categories You Like";
-  static const String profileNotFound = "you haven't registered yet\nplease log in to your account";
+  static const String profileNotFound =
+      "you haven't registered yet\nplease log in to your account";
   static const String welcom = """Welcome to Tak Blog
 
 You must register to submit articles and podcasts.""";
   static const String articleEmpty =
       """You haven't added any articles to the Persian Geek community yet!!!""";
-  static const String shareText = """
-
-I'm using Tak Blog, it's so cool, you should check it out too!\n
-
-www.sasansafari.com
-
-""";
   static const String podcastEmpty = """
 
   You haven't added any podcasts to the Persian Geek community yet!!!

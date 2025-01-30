@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
-import 'package:tech_blog_v2/model/my_models.dart';
+import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 
 class MainScreenPoster extends StatelessWidget {
   const MainScreenPoster({
     super.key,
     required this.size,
-    required this.blogModel,
+    required this.articleModel,
     this.imageProvider,
   });
 
   final Size size;
-  final BlogModel blogModel;
+  final ArticleModel articleModel;
   final ImageProvider? imageProvider;
 
   @override
@@ -61,7 +61,7 @@ class MainScreenPoster extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  blogModel.author ?? "unknown :(",
+                  articleModel.author ?? "unknown :(",
                   style: const TextStyle(
                       color: SolidColors.posterSubTitle,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class MainScreenPoster extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "View: ${blogModel.viewNumber}",
+                  "View: ${articleModel.view}",
                   style: const TextStyle(
                       color: SolidColors.posterSubTitle,
                       fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class MainScreenPoster extends StatelessWidget {
             SizedBox(
               width: size.width / 1.5,
               child: Text(
-                blogModel.title == null ? "empty :(" : blogModel.title!,
+                articleModel.title == null ? "empty :(" : articleModel.title!,
                 style: const TextStyle(
                     color: SolidColors.posterTitle,
                     fontWeight: FontWeight.bold,
