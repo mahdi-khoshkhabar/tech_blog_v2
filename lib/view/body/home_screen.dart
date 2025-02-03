@@ -7,7 +7,6 @@ import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/main_screen_poster.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
-import 'package:tech_blog_v2/utils/api_constant.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:get/get.dart';
@@ -142,9 +141,8 @@ class HomeScreen extends StatelessWidget {
                           items.poster(
                               SizeController(context).size,
                               const Size(150, 150),
-                              Image.network(ApiConstant.hostdlUrl +
-                                  homeScreenController
-                                      .topVisited[index].image!),
+                              Image.network(homeScreenController
+                                  .topVisited[index].image!),
                               homeScreenController.topVisited[index].author
                                   .toString(),
                               homeScreenController.topVisited[index].view,
@@ -166,9 +164,8 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               homeScreenController
-                                      .topVisited[index].image!.length
-                                      .toDouble() *
-                                  2.5,
+                                      .topVisited[index].image!.length +
+                                  50.toDouble(),
                               null,
                               TextDirection.rtl)
                         ],
@@ -216,9 +213,8 @@ class HomeScreen extends StatelessWidget {
                           items.poster(
                               SizeController(context).size,
                               SizeController(context).podcastItemPosterSize,
-                              Image.network(ApiConstant.hostdlUrl +
-                                  homeScreenController
-                                      .topPodcasts[index].poster!),
+                              Image.network(homeScreenController
+                                  .topPodcasts[index].poster!),
                               homeScreenController.topPodcasts[index].publisher
                                   .toString(),
                               homeScreenController.topPodcasts[index].view,
