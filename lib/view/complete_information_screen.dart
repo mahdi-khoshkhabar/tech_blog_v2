@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/buttons.dart';
 import 'package:tech_blog_v2/model/fake_data.dart';
-import 'package:tech_blog_v2/model/hash_tag.dart';
+import 'package:tech_blog_v2/model/hash_tag_box.dart';
 import 'package:tech_blog_v2/model/hashtag_gridview.dart';
 import 'package:tech_blog_v2/model/items.dart';
-import 'package:tech_blog_v2/model/my_models.dart';
+import 'package:tech_blog_v2/model/tag_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:tech_blog_v2/themes.dart';
@@ -22,9 +23,9 @@ class CompleteInfoScreen extends StatefulWidget {
 }
 
 class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
-  List<HashTagModel> favoriteHashTagList = [];
+  List<TagModel> favoriteHashTagList = [];
   List<SelectableHashTagBox> selectableHashTagBoxList = [];
-  List<SelectableHashTagBox> selectableFavoriteHashTagBoxList = [];
+  RxList selectableFavoriteHashTagBoxList = RxList();
 
   @override
   void initState() {
@@ -33,25 +34,26 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
     for (int index = 0; index < FakeData().hashTagStringList.length; index++) {
       selectableHashTagBoxList.add(SelectableHashTagBox(
         hashTagBox: HashTagBox(
-            hashTagModel:
-                HashTagModel(title: FakeData().hashTagStringList[index], id: '$index')),
+            hashTagModel: TagModel(
+                title: FakeData().hashTagStringList[index], id: '$index')),
         hashTagBoxList: favoriteHashTagList,
-        onFavoriteToggle: _updateFavoriteHashTags,
+        //TODO: add some function here to update favorite hash tags
+        // onFavoriteToggle: ,
       ));
     }
   }
 
-  void _updateFavoriteHashTags() {
-    setState(() {
-      selectableFavoriteHashTagBoxList = favoriteHashTagList
-          .map((hashTag) => SelectableHashTagBox(
-                hashTagBox: HashTagBox(hashTagModel: hashTag),
-                hashTagBoxList: favoriteHashTagList,
-                onFavoriteToggle: _updateFavoriteHashTags,
-              ))
-          .toList();
-    });
-  }
+  // void _updateFavoriteHashTags() {
+  //   setState(() {
+  //     selectableFavoriteHashTagBoxList = favoriteHashTagList
+  //         .map((hashTag) => SelectableHashTagBox(
+  //               hashTagBox: HashTagBox(hashTagModel: hashTag),
+  //               hashTagBoxList: favoriteHashTagList,
+  //               onFavoriteToggle: _updateFavoriteHashTags,
+  //             ))
+  //         .toList();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

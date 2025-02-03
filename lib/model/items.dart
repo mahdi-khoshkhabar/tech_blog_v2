@@ -1,80 +1,18 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/article_model.dart';
-import 'package:tech_blog_v2/model/my_models.dart';
+import 'package:tech_blog_v2/model/podcast_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 
-class PodcastItem extends StatelessWidget {
-  const PodcastItem({
-    super.key,
-    this.titleSize,
-    required this.size,
-    required this.posterSize,
-    required this.podCastModel,
-  });
-  final Size size;
-  final Size posterSize;
-  final Size? titleSize;
-  final PodCastModel podCastModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ItemPoster(
-          size: size,
-          itemPosterSize: posterSize,
-          auther: podCastModel.hosts.first,
-          posterImage: podCastModel.poster ,
-          showAuthor: true,
-          ownerTextDirection: TextDirection.ltr,
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        ItemTitle(
-          itemTitle: Text(
-            podCastModel.title ?? MyStrings.blogItemDefaultTitle,
-            style: const TextStyle(
-                fontFamily: "Dana",
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontSize: 14),
-          ),
-          width: titleSize?.width ?? posterSize.width,
-          textDirection: TextDirection.ltr,
-        )
-      ],
-    );
-  }
-}
-
-class ItemPoster extends StatelessWidget {
-  ItemPoster({
-    super.key,
-    required this.size,
-    required this.auther,
-    this.view,
-    this.itemPosterSize,
-    this.posterImage,
-    this.showAuthor,
-    this.showViews,
-    this.ownerTextDirection,
-  });
-  final Size size;
-  final Size? itemPosterSize;
-  final Image? posterImage;
-  final String auther;
-  final String? view;
-  final TextDirection? ownerTextDirection;
-  bool? showAuthor = false;
-  bool? showViews = false;
-  @override
-  Widget build(BuildContext context) {
+class ItemsBasicIngredients {
+  poster(Size size, Size? itemPosterSize, Image? posterImage, String auther,
+      String? view, TextDirection? ownerTextDirection,
+      {bool? showAuthor = false, bool? showViews = false}) {
     double borderRadiusController = 20;
     return SizedBox(
       width: itemPosterSize?.width ?? size.width / 2.7,
@@ -86,10 +24,8 @@ class ItemPoster extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(borderRadiusController),
-              image: DecorationImage(
-                  image:
-                      posterImage!.image ,
-                  fit: BoxFit.cover),
+              image:
+                  DecorationImage(image: posterImage!.image, fit: BoxFit.cover),
             ),
             foregroundDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -160,37 +96,120 @@ class ItemPoster extends StatelessWidget {
       ),
     );
   }
-}
 
-class ItemTitle extends StatelessWidget {
-  const ItemTitle(
-      {super.key,
-      required this.itemTitle,
-      required this.width,
-      this.maxLine,
-      this.textDirection});
-  final Text itemTitle;
-  final double width;
-  final int? maxLine;
-  final TextDirection? textDirection;
-  @override
-  Widget build(BuildContext context) {
+  title(Text titleText, double? width, int? maxLine,
+      TextDirection? textDirection) {
     return SizedBox(
       width: width,
       child: Text(
-        itemTitle.data!,
+        titleText.data!,
         textDirection: textDirection ?? TextDirection.rtl,
         style: TextStyle(
-            color: itemTitle.style?.color ?? Colors.black,
+            color: titleText.style?.color ?? Colors.black,
             fontFamily: "Dana",
-            fontSize: itemTitle.style?.fontSize ?? 14,
-            fontWeight: itemTitle.style?.fontWeight ?? FontWeight.bold),
+            fontSize: titleText.style?.fontSize ?? 14,
+            fontWeight: titleText.style?.fontWeight ?? FontWeight.bold),
         maxLines: maxLine ?? 2,
         overflow: TextOverflow.ellipsis,
       ),
     );
   }
 }
+
+/*
+class BlogItem extends StatelessWidget {
+  BlogItem({
+    super.key,
+    this.titleSize,
+    required this.articleModel,
+    required this.posterSize,
+    required this.items,
+    this.textDirection,
+  });
+  final ArticleModel articleModel;
+  final Size posterSize;
+  final Size? titleSize;
+  final ItemsBasicIngredients? items;
+  TextDirection? textDirection;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        items?.poster(
+            SizeController(context).size,
+            posterSize,
+            Image.network(articleModel.image!),
+            articleModel.author ?? "",
+            articleModel.view,
+            TextDirection.ltr),
+        const SizedBox(
+          height: 8,
+        ),
+        items?.title(
+            Text(
+              articleModel.title ?? MyStrings.blogItemDefaultTitle,
+              style: const TextStyle(
+                fontFamily: "Dana",
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 14,
+              ),
+            ),
+            titleSize?.width ?? posterSize.width,
+            null,
+            textDirection ?? TextDirection.ltr)
+      ],
+    );
+  }
+}
+
+class PodcastItem extends StatelessWidget {
+  const PodcastItem({
+    super.key,
+    this.titleSize,
+    required this.size,
+    required this.posterSize,
+    required this.podCastModel,
+    required this.items,
+  });
+  final Size size;
+  final Size posterSize;
+  final Size? titleSize;
+  final PodcastModel podCastModel;
+  final ItemsBasicIngredients? items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        items?.poster(
+            size,
+            posterSize,
+            Image.network(podCastModel.poster!),
+            podCastModel.publisher.toString(),
+            podCastModel.view,
+            TextDirection.ltr),
+        const SizedBox(
+          height: 8,
+        ),
+        items?.title(
+            Text(
+              podCastModel.title ?? MyStrings.blogItemDefaultTitle,
+              style: const TextStyle(
+                  fontFamily: "Dana",
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 14),
+            ),
+            titleSize?.width ?? posterSize.width,
+            null,
+            TextDirection.ltr)
+      ],
+    );
+  }
+}
+*/
 
 class ItemBar extends StatelessWidget {
   ItemBar({
@@ -204,7 +223,7 @@ class ItemBar extends StatelessWidget {
   final Size? itemSize;
   final int? itemCount;
   final VoidCallback voidCallback;
-  List<Widget> itemBarObjectList = [];
+  RxList itemBarObjectList = RxList();
 
   @override
   Widget build(BuildContext context) {
@@ -212,67 +231,22 @@ class ItemBar extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: itemSize?.height ?? 50,
-        child: ListView.builder(
-          itemCount: itemCount ?? itemBarObjectList.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: index == 0
-                  ? EdgeInsets.fromLTRB(
-                      SizeController(context).screenPadding, 0, 16, 0)
-                  : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-              child: itemBarObjectList[index],
-            );
-          },
-        ),
+        child: Obx(() {
+          return ListView.builder(
+            itemCount: itemCount ?? itemBarObjectList.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: index == 0
+                    ? EdgeInsets.fromLTRB(
+                        SizeController(context).screenPadding, 0, 16, 0)
+                    : const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                child: itemBarObjectList[index],
+              );
+            },
+          );
+        }),
       ),
-    );
-  }
-}
-
-class BlogItem extends StatelessWidget {
-  BlogItem({
-    super.key,
-    this.titleSize,
-    required this.articleModel,
-    required this.posterSize,
-    this.textDirection,
-  });
-  final ArticleModel articleModel;
-  final Size posterSize;
-  final Size? titleSize;
-  TextDirection? textDirection;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ItemPoster(
-          size: SizeController(context).size,
-          itemPosterSize: posterSize,
-          auther: articleModel.author ?? "",
-          view: articleModel.view,
-          posterImage: Image.network(articleModel.image!),
-          showAuthor: true,
-          showViews: true,
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        ItemTitle(
-          itemTitle: Text(
-            articleModel.title ?? MyStrings.blogItemDefaultTitle,
-            style: const TextStyle(
-              fontFamily: "Dana",
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: 14,
-            ),
-          ),
-          width: titleSize?.width ?? posterSize.width,
-          textDirection: textDirection ?? TextDirection.ltr,
-        ),
-      ],
     );
   }
 }

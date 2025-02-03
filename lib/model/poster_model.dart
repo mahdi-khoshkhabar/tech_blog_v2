@@ -1,15 +1,15 @@
-class Pooster {
+class Poster {
   String? id;
   String? title;
   String? image;
 
-  Pooster({
+  Poster({
     required this.id,
     required this.title,
     required this.image,
   });
 
-  Pooster.fromJson(Map<String, dynamic> element) {
+  Poster.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
     image = element["image"];

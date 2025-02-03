@@ -1,4 +1,4 @@
-class PodcastModelREplacement {
+class PodcastModel {
   String? id;
   String? title;
   String? poster;
@@ -6,7 +6,7 @@ class PodcastModelREplacement {
   String? view;
   String? createdAt;
 
-  PodcastModelREplacement({
+  PodcastModel({
     required this.id,
     required this.title,
     required this.poster,
@@ -15,7 +15,7 @@ class PodcastModelREplacement {
     required this.createdAt,
   });
 
-  PodcastModelREplacement.fromJson(Map<String, dynamic> element) {
+  PodcastModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
     poster = element["poster"];

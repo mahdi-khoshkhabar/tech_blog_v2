@@ -1,28 +1,3 @@
-// ignore_for_file: unused_local_variable
-
-// class BlogModel {
-//   int id;
-//   Image? image;
-//   String? title;
-//   String? blogContent;
-//   String? author;
-//   List<String>? hashTags;
-//   bool? favoriteStatus = false;
-//   bool? saveStatus = false;
-//   int? viewNumber = 0;
-//   BlogModel({
-//     required this.id,
-//     this.image,
-//     this.title,
-//     this.author,
-//     this.blogContent,
-//     this.hashTags,
-//     this.favoriteStatus,
-//     this.saveStatus,
-//     this.viewNumber,
-//   });
-// }
-
 class ArticleModel {
   String? id;
   String? title;
@@ -46,14 +21,14 @@ class ArticleModel {
   });
 
   ArticleModel.fromJson(Map<String, dynamic> element) {
-    String id = element["id"];
-    String title = element["title"];
-    String image = element["image"];
-    String catId = element["cat_id"];
-    String catName = element["cat_name"];
-    String author = element["author"];
-    String view = element["view"];
-    String status = element["status"];
-    String createdAt = element["created_at"];
+    id = element["id"];
+    title = element["title"];
+    image = element["image"];
+    catId = element["cat_id"];
+    catName = element["cat_name"];
+    author = element["author"];
+    view = element["view"];
+    status = element["status"];
+    createdAt = element["created_at"];
   }
 }

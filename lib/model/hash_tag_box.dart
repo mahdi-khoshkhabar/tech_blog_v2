@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tech_blog_v2/model/my_models.dart';
+import 'package:tech_blog_v2/model/tag_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 
 class HashTagBox extends StatelessWidget {
@@ -8,7 +8,7 @@ class HashTagBox extends StatelessWidget {
     required this.hashTagModel,
     this.textColor,
   });
-  final HashTagModel hashTagModel;
+  final TagModel hashTagModel;
   final Color? textColor;
 
   @override
@@ -63,7 +63,7 @@ class SelectableHashTagBox extends StatefulWidget {
   });
 
   final HashTagBox hashTagBox;
-  final List<HashTagModel> hashTagBoxList;
+  final List<TagModel> hashTagBoxList;
   final VoidCallback? onFavoriteToggle;
 
   @override

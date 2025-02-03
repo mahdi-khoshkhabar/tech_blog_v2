@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +9,8 @@ import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/app_bar_icon.dart';
 import 'package:tech_blog_v2/model/drawer.dart';
-import 'package:tech_blog_v2/model/fake_data.dart';
-import 'package:tech_blog_v2/model/hash_tag.dart';
-import 'package:tech_blog_v2/model/items.dart';
-import 'package:tech_blog_v2/services/dio_service.dart';
-import 'package:tech_blog_v2/utils/api_constant.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/view/body/empthy_profile_screen.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
-import 'package:tech_blog_v2/view/body/profile_screen.dart';
 import 'package:tech_blog_v2/view/sign_up_for_submit_article_screen.dart';
 import 'package:get/get.dart';
 
@@ -27,15 +22,11 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DioService().getMethod(ApiConstant.getHomItems);
-
     Size blogItemPosterSize = SizeController(context).blogItemPosterSize;
     Size podCastItemPosterSize = SizeController(context).podcastItemPosterSize;
-    List<BlogItem> blogitemList = [];
-    List<PodcastItem> podCastItemList = [];
-    List<SelectableHashTagBox> hashTagBoxList = [];
     double borderRadiusController = 20;
 
+    // builder for creating fake data for blog item, podcast item and hash tag box
     /*
     // builder for blog item layout on screen
 
@@ -84,6 +75,7 @@ class MainScreen extends StatelessWidget {
     }
 
     */
+
     return Scaffold(
       key: _key,
       drawer: const MyDrawer(),
@@ -102,7 +94,6 @@ class MainScreen extends StatelessWidget {
             function: () {
               _key.currentState!.openDrawer();
               if (kDebugMode) {
-                //TODO: add open drawer function
                 print("Icons.menu_rounded");
               }
             },
@@ -127,14 +118,8 @@ class MainScreen extends StatelessWidget {
               index: selectedBody.value,
               children: [
                 HomeScreen(
-                    hashTagBoxList: hashTagBoxList,
-                    blogitemList: blogitemList,
                     blogItemPosterSize: blogItemPosterSize,
-                    podCastItemList: podCastItemList,
                     podCastItemPosterSize: podCastItemPosterSize),
-                FakeData().profileList.isNotEmpty
-                    ? const ProfileScreen()
-                    : const EmpthyProfileScreen()
               ],
             ),
           )),
