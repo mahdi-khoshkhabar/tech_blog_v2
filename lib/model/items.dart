@@ -49,7 +49,7 @@ class ItemsBasicIngredients {
               },
               placeholder: (context, url) {
                 return const SpinKitFadingCube(
-                  color: Colors.grey,
+                  color: SolidColors.primaryColor,
                   size: 50.0,
                 );
               },
