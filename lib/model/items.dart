@@ -1,37 +1,73 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 
 class ItemsBasicIngredients {
-  poster(Size size, Size? itemPosterSize, Image? posterImage, String auther,
-      String? view, TextDirection? ownerTextDirection,
-      {bool? showAuthor = false, bool? showViews = false}) {
-    double borderRadiusController = 20;
+  poster(
+    String imageUrl,
+    Size size,
+    Size? itemPosterSize,
+    // Image? posterImage,
+    String? auther,
+    String? view,
+    TextDirection? ownerTextDirection, {
+    bool? showAuthor = false,
+    bool? showViews = false,
+  }) {
+    //poster image
     return SizedBox(
       width: itemPosterSize?.width ?? size.width / 2.7,
       height: itemPosterSize?.height ?? size.height / 2.7,
       child: Stack(
         children: [
-          //poster image
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(borderRadiusController),
-              image:
-                  DecorationImage(image: posterImage!.image, fit: BoxFit.cover),
-            ),
-            foregroundDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: const LinearGradient(
-                    colors: GradientColors.blogPost,
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter)),
-            child: const Stack(
-              children: [],
+          SizedBox(
+            width: SizeController.podCastItemSize.width,
+            height: SizeController.podCastItemSize.height,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              imageBuilder: (context, imageProvider) {
+                return Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                  ),
+                  foregroundDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: const LinearGradient(
+                          colors: GradientColors.homeScreenItemPosterColor,
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter)),
+                );
+              },
+              placeholder: (context, url) {
+                return const SpinKitFadingCube(
+                  color: Colors.grey,
+                  size: 50.0,
+                );
+              },
+              errorWidget: (context, url, error) {
+                return Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: const LinearGradient(
+                          colors: GradientColors.homeScreenItemPosterColor,
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter)),
+                  child: const Icon(
+                    Icons.image_not_supported_outlined,
+                    color: Colors.black,
+                    size: 50,
+                  ),
+                );
+              },
             ),
           ),
           //poster data
@@ -52,7 +88,7 @@ class ItemsBasicIngredients {
                               ? (size.width / 2.7) / 1.3
                               : itemPosterSize!.width / 1.1,
                           child: Text(
-                            auther,
+                            auther ?? "",
                             style: const TextStyle(
                               color: Colors.white,
                               fontFamily: "dana",

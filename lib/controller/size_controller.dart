@@ -36,6 +36,6 @@ class SizeController {
 
   Size miniTopicSize = const Size(0, 20);
   // Size bottomNavigationSize = const Size(0, 80);
-  static Size blogItemSize = const Size(100, 100);
-  static Size podCastItemSize = const Size(100, 100);
+  static Size blogItemSize = const Size(150, 150);
+  static Size podCastItemSize = const Size(150, 150);
 }

@@ -66,7 +66,7 @@ class GradientColors {
     Color.fromARGB(255, 0, 255, 217),
     Color.fromARGB(255, 255, 0, 183),
   ];
-  static const List<Color> blogPost = [
+  static const List<Color> homeScreenItemPosterColor = [
     Color.fromARGB(255, 0, 0, 0),
     Color.fromARGB(0, 0, 0, 0)
   ];

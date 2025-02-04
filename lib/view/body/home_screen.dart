@@ -139,12 +139,10 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           //article poster
                           items.poster(
+                              homeScreenController.topVisited[index].image!,
                               SizeController(context).size,
-                              const Size(150, 150),
-                              Image.network(homeScreenController
-                                  .topVisited[index].image!),
-                              homeScreenController.topVisited[index].author
-                                  .toString(),
+                              SizeController.blogItemSize,
+                              homeScreenController.topVisited[index].author!,
                               homeScreenController.topVisited[index].view,
                               TextDirection.rtl,
                               showAuthor: true,
@@ -211,14 +209,21 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           //podcast poster
                           items.poster(
+                              homeScreenController.topPodcasts[index].poster!,
                               SizeController(context).size,
-                              SizeController(context).podcastItemPosterSize,
-                              Image.network(homeScreenController
-                                  .topPodcasts[index].poster!),
-                              homeScreenController.topPodcasts[index].publisher
-                                  .toString(),
+                              SizeController.podCastItemSize,
+                              homeScreenController.topPodcasts[index].author,
                               homeScreenController.topPodcasts[index].view,
-                              TextDirection.rtl),
+                              TextDirection.rtl,
+                              showAuthor: true),
+                          // items.poster(
+                          //   homeScreenController.topPodcasts[index].poster!,
+                          //   SizeController(context).size,
+                          //   SizeController.podCastItemSize,
+                          //   homeScreenController.topPodcasts[index].publisher!,
+                          //   homeScreenController.topPodcasts[index].view,
+                          //   TextDirection.rtl,
+                          // ),
                           const SizedBox(
                             height: 8,
                           ),
