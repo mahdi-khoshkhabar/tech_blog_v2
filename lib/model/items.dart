@@ -2,11 +2,11 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
+import 'package:tech_blog_v2/utils/my_utils.dart';
 
 class ItemsBasicIngredients {
   poster(
@@ -48,10 +48,7 @@ class ItemsBasicIngredients {
                 );
               },
               placeholder: (context, url) {
-                return const SpinKitFadingCube(
-                  color: SolidColors.primaryColor,
-                  size: 50.0,
-                );
+                return loading();
               },
               errorWidget: (context, url, error) {
                 return Container(
@@ -148,101 +145,6 @@ class ItemsBasicIngredients {
     );
   }
 }
-
-/*
-class BlogItem extends StatelessWidget {
-  BlogItem({
-    super.key,
-    this.titleSize,
-    required this.articleModel,
-    required this.posterSize,
-    required this.items,
-    this.textDirection,
-  });
-  final ArticleModel articleModel;
-  final Size posterSize;
-  final Size? titleSize;
-  final ItemsBasicIngredients? items;
-  TextDirection? textDirection;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        items?.poster(
-            SizeController(context).size,
-            posterSize,
-            Image.network(articleModel.image!),
-            articleModel.author ?? "",
-            articleModel.view,
-            TextDirection.ltr),
-        const SizedBox(
-          height: 8,
-        ),
-        items?.title(
-            Text(
-              articleModel.title ?? MyStrings.blogItemDefaultTitle,
-              style: const TextStyle(
-                fontFamily: "Dana",
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
-            titleSize?.width ?? posterSize.width,
-            null,
-            textDirection ?? TextDirection.ltr)
-      ],
-    );
-  }
-}
-
-class PodcastItem extends StatelessWidget {
-  const PodcastItem({
-    super.key,
-    this.titleSize,
-    required this.size,
-    required this.posterSize,
-    required this.podCastModel,
-    required this.items,
-  });
-  final Size size;
-  final Size posterSize;
-  final Size? titleSize;
-  final PodcastModel podCastModel;
-  final ItemsBasicIngredients? items;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        items?.poster(
-            size,
-            posterSize,
-            Image.network(podCastModel.poster!),
-            podCastModel.publisher.toString(),
-            podCastModel.view,
-            TextDirection.ltr),
-        const SizedBox(
-          height: 8,
-        ),
-        items?.title(
-            Text(
-              podCastModel.title ?? MyStrings.blogItemDefaultTitle,
-              style: const TextStyle(
-                  fontFamily: "Dana",
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 14),
-            ),
-            titleSize?.width ?? posterSize.width,
-            null,
-            TextDirection.ltr)
-      ],
-    );
-  }
-}
-*/
 
 class ItemBar extends StatelessWidget {
   ItemBar({

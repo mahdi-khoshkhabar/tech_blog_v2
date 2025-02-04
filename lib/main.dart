@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/view/splash_screen.dart';
 
@@ -25,7 +26,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return MaterialApp(
       // localizationsDelegates: [
       //   GlobalMaterialLocalizations.delegate,
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       // supportedLocales: [
       //   Locale('fa'), // Persian
       // ],
-      home: SplashScreen(size: size),
+      home: SplashScreen(size: SizeController(context).size),
       // home: MainScreen(size: size, bodySpaceBetween: bodySpaceBetween),
     );
   }
