@@ -7,6 +7,7 @@ import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
+import 'package:tech_blog_v2/utils/text_style.dart';
 
 class ItemsBasicIngredients {
   poster(
@@ -86,11 +87,7 @@ class ItemsBasicIngredients {
                               : itemPosterSize!.width / 1.1,
                           child: Text(
                             auther ?? "",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: "dana",
-                              fontSize: 14,
-                            ),
+                            style: TextStyleLib().blogItemAuthor,
                             textDirection:
                                 ownerTextDirection ?? TextDirection.ltr,
                             overflow: TextOverflow.ellipsis,
@@ -106,7 +103,7 @@ class ItemsBasicIngredients {
                         children: [
                           Text(
                             view.toString(),
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyleLib().blogItemView,
                           ),
                           const SizedBox(
                             width: 3,
@@ -134,11 +131,7 @@ class ItemsBasicIngredients {
       child: Text(
         titleText.data!,
         textDirection: textDirection ?? TextDirection.rtl,
-        style: TextStyle(
-            color: titleText.style?.color ?? Colors.black,
-            fontFamily: "Dana",
-            fontSize: titleText.style?.fontSize ?? 14,
-            fontWeight: titleText.style?.fontWeight ?? FontWeight.bold),
+        style: titleText.style ?? TextStyleLib().blogItemTitle,
         maxLines: maxLine ?? 2,
         overflow: TextOverflow.ellipsis,
       ),

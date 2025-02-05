@@ -7,6 +7,7 @@ import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/components.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
+import 'package:tech_blog_v2/utils/text_style.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -69,12 +70,7 @@ class MyDrawer extends StatelessWidget {
         child: Text(
           myText,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontFamily: "dana",
-            color: SolidColors.primaryColor,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyleLib().selectableRow,
         ),
       )),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/model/tag_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
+import 'package:tech_blog_v2/utils/text_style.dart';
 
 class TagBox extends StatelessWidget {
   const TagBox({
@@ -41,11 +42,7 @@ class TagBox extends StatelessWidget {
               hashTagModel.title!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: "dana",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
+              style: TextStyleLib().tagTitle,
             ),
           ],
         ),

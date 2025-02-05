@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/components.dart';
-import 'package:tech_blog_v2/model/fake_data.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
+import 'package:tech_blog_v2/utils/text_style.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
@@ -17,7 +19,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     Size spaceBetweenSize = Size(10, size.height / 56);
-    // builder for blog item layout on screen
     return Scaffold(
         backgroundColor: SolidColors.backgroundColor,
         body: SafeArea(
@@ -27,8 +28,7 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // user photo
-                Image.asset(
-                  Assets.images.profileAvatar.path,
+                Assets.images.profileAvatar.image(
                   width: size.width / 3.2,
                 ),
                 SizedBox(
@@ -47,43 +47,34 @@ class ProfileScreen extends StatelessWidget {
                   height: spaceBetweenSize.height * 3,
                 ),
                 // user name
-                Text(
-                  "${FakeData().profileList.first.name} ${FakeData().profileList.first.lastName}",
-                  style: TextStyle(
-                      fontFamily: "dana",
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: SolidColors.profileScreenName),
-                ),
+                Text("Mahdi Khoshkhabar",
+                    style: TextStyleLib().profileScreenUserName),
                 SizedBox(
                   height: spaceBetweenSize.height / 2,
                 ),
                 // email
                 Text(
-                  FakeData().profileList.first.emailAddress,
+                  "mahdikhoshkhabar6@gmail.com",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontFamily: "dana",
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
+                  style: TextStyleLib().profileScreenEmail,
                 ),
                 SizedBox(
                   height: spaceBetweenSize.height * 2,
                 ),
                 HorizontalDivider(),
                 profileButton(size, MyStrings.myFavBlog, () {
-                  print("MyStrings.myFavBlog");
+                  log(name: "ProfileScreen", "${MyStrings.myFavBlog} pressed");
                 }),
                 HorizontalDivider(),
                 profileButton(size, MyStrings.myFavPodcast, () {
-                  print("MyStrings.myFavPodcast");
+                  log(
+                      name: "ProfileScreen",
+                      "${MyStrings.myFavPodcast} pressed");
                 }),
                 HorizontalDivider(),
                 profileButton(size, MyStrings.logOut, () {
-                  print("MyStrings.logOut");
+                  log(name: "ProfileScreen", "${MyStrings.logOut} pressed");
                 }),
                 SizedBox(
                   height: spaceBetweenSize.height * 4,
@@ -105,8 +96,7 @@ class ProfileScreen extends StatelessWidget {
         child: Center(
             child: Text(
           title,
-          style: TextStyle(
-              fontFamily: "dana", fontWeight: FontWeight.bold, fontSize: 18),
+          style: TextStyleLib().profileScreenButton,
         )),
       ),
     );

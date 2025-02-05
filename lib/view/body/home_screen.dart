@@ -7,11 +7,12 @@ import 'package:tech_blog_v2/controller/home_screen_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
+import 'package:tech_blog_v2/model/tag_box.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
-
+import 'package:tech_blog_v2/utils/text_style.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -31,14 +32,14 @@ class HomeScreen extends StatelessWidget {
     return Obx(() {
       return homeScreenController.isLoading.isFalse
           ? SingleChildScrollView(
-            child: Column(
+              child: Column(
                 children: [
                   poster(context),
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween,
                   ),
                   // hash tag bar
-                  hashtagBar(),
+                  tagBar(),
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween,
                   ),
@@ -56,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                     height: SizeController(context).miniTopicSize.height,
                   ),
                   //top visited blog item bar
-                  topVisitedBlogItemBar(context),
+                  topVisitedBlogBar(context),
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween,
                   ),
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                     height: SizeController(context).miniTopicSize.height,
                   ),
                   //top visited podcast item bar
-                  topVisitedPodcastItemBar(context),
+                  topVisitedPodcastBar(context),
                   // end of screen sized box
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween +
@@ -87,8 +88,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-          )
-          :  loading();
+            )
+          : loading();
     });
   }
 
@@ -150,27 +151,16 @@ class HomeScreen extends StatelessWidget {
           //poster details
           Positioned(
             bottom: 10,
-            left: 10,
-            right: 10,
+            left: 15,
+            right: 15,
             child: SizedBox(
-              child: Column(
-                children: [
-                  //title
-                  SizedBox(
-                    width: SizeController(context).size.width / 1.5,
-                    child: Text(
-                      textDirection: TextDirection.rtl,
-                      homeScreenController.poster.value.title!,
-                      style: const TextStyle(
-                          color: SolidColors.posterTitle,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Dana",
-                          fontSize: 20),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+              width: SizeController(context).size.width / 1.5,
+              child: Text(
+                textDirection: TextDirection.rtl,
+                homeScreenController.poster.value.title!,
+                style: TextStyleLib().posterTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
@@ -179,7 +169,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget topVisitedPodcastItemBar(BuildContext context) {
+  Widget topVisitedPodcastBar(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
         width: double.infinity,
@@ -219,11 +209,6 @@ class HomeScreen extends StatelessWidget {
                       Text(
                         homeScreenController.topPodcasts[index].title ??
                             MyStrings.blogItemDefaultTitle,
-                        style: const TextStyle(
-                            fontFamily: "Dana",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 14),
                       ),
                       null,
                       null,
@@ -237,7 +222,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget topVisitedBlogItemBar(BuildContext context) {
+  Widget topVisitedBlogBar(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
         width: double.infinity,
@@ -270,12 +255,7 @@ class HomeScreen extends StatelessWidget {
                       Text(
                         homeScreenController.topVisited[index].title ??
                             MyStrings.blogItemDefaultTitle,
-                        style: const TextStyle(
-                          fontFamily: "Dana",
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
+                        style: TextStyleLib().blogItemTitle,
                       ),
                       homeScreenController.topVisited[index].image!.length +
                           50.toDouble(),
@@ -290,7 +270,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget hashtagBar() {
+  Widget tagBar() {
     return SingleChildScrollView(
       child: SizedBox(
           width: double.infinity,
@@ -300,47 +280,12 @@ class HomeScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Padding(
-                padding: index == 0
-                    ? EdgeInsets.fromLTRB(
-                        SizeController(context).screenPadding, 0, 16, 0)
-                    : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: GradientColors.tags,
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight),
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 16, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.tag,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                        // const SizedBox(
-                        //   width: 8,
-                        // ),
-                        Text(
-                          textAlign: TextAlign.center,
-                          homeScreenController.tags[index].title!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: "dana",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
+                  padding: index == 0
+                      ? EdgeInsets.fromLTRB(
+                          SizeController(context).screenPadding, 0, 16, 0)
+                      : const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                  child:
+                      TagBox(hashTagModel: homeScreenController.tags[index]));
             },
           )),
     );

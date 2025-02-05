@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -11,6 +11,7 @@ import 'package:tech_blog_v2/model/app_bar_icon.dart';
 import 'package:tech_blog_v2/model/drawer.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
+import 'package:tech_blog_v2/view/body/profile_screen.dart';
 import 'package:tech_blog_v2/view/sign_up_for_submit_article_screen.dart';
 import 'package:get/get.dart';
 
@@ -120,6 +121,7 @@ class MainScreen extends StatelessWidget {
                 HomeScreen(
                     blogItemPosterSize: blogItemPosterSize,
                     podCastItemPosterSize: podCastItemPosterSize),
+                const ProfileScreen(),
               ],
             ),
           )),
@@ -168,9 +170,6 @@ class MainScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (context) => const SignUpScreen()));
-                            if (kDebugMode) {
-                              print("icons.write");
-                            }
                           },
                           icon: ImageIcon(
                             Assets.icons.write.provider(),
@@ -179,11 +178,8 @@ class MainScreen extends StatelessWidget {
                       // user button
                       IconButton(
                           onPressed: () {
-                            if (kDebugMode) {
-                              print("icons.user");
-                            }
-
                             selectedBody.value = 1;
+                            log(name: "MainScreen", "user button pressed");
                           },
                           icon: ImageIcon(
                             Assets.icons.user.provider(),
