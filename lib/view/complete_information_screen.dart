@@ -7,7 +7,7 @@ import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/buttons.dart';
 import 'package:tech_blog_v2/model/fake_data.dart';
-import 'package:tech_blog_v2/model/hash_tag_box.dart';
+import 'package:tech_blog_v2/model/tag_box.dart';
 import 'package:tech_blog_v2/model/hashtag_gridview.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/tag_model.dart';
@@ -33,7 +33,7 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
     // Initial hash tag box setup
     for (int index = 0; index < FakeData().hashTagStringList.length; index++) {
       selectableHashTagBoxList.add(SelectableHashTagBox(
-        hashTagBox: HashTagBox(
+        hashTagBox: TagBox(
             hashTagModel: TagModel(
                 title: FakeData().hashTagStringList[index], id: '$index')),
         hashTagBoxList: favoriteHashTagList,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/model/tag_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 
-class HashTagBox extends StatelessWidget {
-  const HashTagBox({
+class TagBox extends StatelessWidget {
+  const TagBox({
     super.key,
     required this.hashTagModel,
     this.textColor,
@@ -62,7 +62,7 @@ class SelectableHashTagBox extends StatefulWidget {
     this.onFavoriteToggle,
   });
 
-  final HashTagBox hashTagBox;
+  final TagBox hashTagBox;
   final List<TagModel> hashTagBoxList;
   final VoidCallback? onFavoriteToggle;
 
