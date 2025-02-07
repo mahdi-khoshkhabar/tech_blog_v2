@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tech_blog_v2/gen/fonts.gen.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 
 class TextStyleLib {
-  //home screen 
+  // Text styles for the home screen
   TextStyle posterTitle = const TextStyle(
       color: SolidColors.posterTitle,
       fontWeight: FontWeight.bold,
-      fontFamily: "Dana",
+      fontFamily: FontFamily.dana,
       fontSize: 20);
 
   TextStyle blogItemAuthor = const TextStyle(
     color: Colors.white,
-    fontFamily: "dana",
+    fontFamily: FontFamily.dana,
     fontSize: 14,
   );
 
@@ -19,45 +20,67 @@ class TextStyleLib {
 
   TextStyle blogItemTitle = const TextStyle(
       color: Colors.black,
-      fontFamily: "Dana",
+      fontFamily: FontFamily.dana,
       fontSize: 14,
       fontWeight: FontWeight.bold);
 
-  //specific models
+  // Text styles for specific models
   TextStyle tagTitle = const TextStyle(
       color: Colors.white,
-      fontFamily: "dana",
+      fontFamily: FontFamily.dana,
       fontWeight: FontWeight.bold,
       fontSize: 15);
 
   TextStyle miniTopic = const TextStyle(
-      fontFamily: "Dana",
+      fontFamily: FontFamily.dana,
       fontWeight: FontWeight.bold,
       color: SolidColors.miniTopicColor,
       fontSize: 18);
 
-  //drawer
+  TextStyle appBarTitle = const TextStyle(
+    fontFamily: FontFamily.dana,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: SolidColors.primaryColor,
+  );
+
+  // Text styles for the drawer
   TextStyle selectableRow = const TextStyle(
-    fontFamily: "dana",
+    fontFamily: FontFamily.dana,
     color: SolidColors.primaryColor,
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
-  //profile screen
+  // Text styles for the profile screen
   TextStyle profileScreenUserName = const TextStyle(
-      fontFamily: "dana",
+      fontFamily: FontFamily.dana,
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: SolidColors.profileScreenName);
 
   TextStyle profileScreenEmail = const TextStyle(
-    fontFamily: "dana",
+    fontFamily: FontFamily.dana,
     fontWeight: FontWeight.w500,
     fontSize: 18,
     color: Colors.black,
   );
 
   TextStyle profileScreenButton = const TextStyle(
-      fontFamily: "dana", fontWeight: FontWeight.bold, fontSize: 18);
+      fontFamily: FontFamily.dana, fontWeight: FontWeight.bold, fontSize: 18);
+
+  // Text styles for the article list screen
+
+  TextStyle articleListScreenItemsTitle = const TextStyle(
+    fontFamily: FontFamily.dana,
+    fontSize: 14,
+    color: SolidColors.articleListItemsTitleText,
+  );
+
+  TextStyle articleListScreenItemsAothor = const TextStyle(
+    fontFamily: FontFamily.dana,
+    color: SolidColors.articleListItemsAuthorText,
+    fontSize: 14,
+
+  );
 }

@@ -81,36 +81,7 @@ class MainScreen extends StatelessWidget {
       key: _key,
       drawer: const MyDrawer(),
       backgroundColor: SolidColors.backgroundColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        // elevation: 1,
-        shadowColor: SolidColors.appBarShadowColor,
-        backgroundColor: SolidColors.appBarBackgroundColor,
-        foregroundColor: SolidColors.appBarforegroundColor,
-        surfaceTintColor: SolidColors.appBarsurfaceTintColor,
-        actions: [
-          // menu botton
-          AppBarIcons(
-            inputIcon: Icons.menu_rounded,
-            function: () {
-              _key.currentState!.openDrawer();
-              if (kDebugMode) {
-                print("Icons.menu_rounded");
-              }
-            },
-          ),
-          Expanded(child: Assets.images.logo.image()),
-          // search botton
-          AppBarIcons(
-            inputIcon: CupertinoIcons.search,
-            function: () {
-              if (kDebugMode) {
-                print("CupertinoIcons.search");
-              }
-            },
-          ),
-        ],
-      ),
+      appBar: mainScreenAppBar(),
       body: Stack(
         children: [
           Positioned.fill(
@@ -193,6 +164,39 @@ class MainScreen extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  AppBar mainScreenAppBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      // elevation: 1,
+      shadowColor: SolidColors.appBarShadowColor,
+      backgroundColor: SolidColors.appBarBackgroundColor,
+      foregroundColor: SolidColors.appBarforegroundColor,
+      surfaceTintColor: SolidColors.appBarsurfaceTintColor,
+      actions: [
+        // menu botton
+        AppBarIcons(
+          inputIcon: Icons.menu_rounded,
+          function: () {
+            _key.currentState!.openDrawer();
+            if (kDebugMode) {
+              print("Icons.menu_rounded");
+            }
+          },
+        ),
+        Expanded(child: Assets.images.logo.image()),
+        // search botton
+        AppBarIcons(
+          inputIcon: CupertinoIcons.search,
+          function: () {
+            if (kDebugMode) {
+              print("CupertinoIcons.search");
+            }
+          },
+        ),
+      ],
     );
   }
 }

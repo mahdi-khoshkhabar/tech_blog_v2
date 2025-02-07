@@ -10,14 +10,14 @@ import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
 
 class ItemsBasicIngredients {
-  poster(
-    String imageUrl,
-    Size size,
+  poster({
+    required String imageUrl,
+    required Size size,
     Size? itemPosterSize,
     // Image? posterImage,
     String? auther,
     String? view,
-    TextDirection? ownerTextDirection, {
+    TextDirection? ownerTextDirection, 
     bool? showAuthor = false,
     bool? showViews = false,
   }) {

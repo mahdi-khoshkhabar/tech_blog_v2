@@ -15,6 +15,7 @@ void main() {
 
   // محدود کردن جهت‌گیری صفحه به حالت پرتره
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       // supportedLocales: [
       //   Locale('fa'), // Persian
       // ],
+      // home: ArticleListScreen(),
       home: SplashScreen(size: SizeController(context).size),
       // home: MainScreen(size: size, bodySpaceBetween: bodySpaceBetween),
     );

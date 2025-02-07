@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,6 +15,7 @@ import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
+import 'package:tech_blog_v2/view/artile_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -34,34 +37,44 @@ class HomeScreen extends StatelessWidget {
           ? SingleChildScrollView(
               child: Column(
                 children: [
+                  // Poster section
                   poster(context),
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween,
                   ),
-                  // hash tag bar
+                  // Hash tag bar
                   tagBar(),
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween,
                   ),
-                  //mini topic for blogs
+                  // Mini topic for blogs
                   Padding(
                     padding: EdgeInsets.only(
                         left: SizeController(context).screenPadding),
-                    child: const MiniTopic(
-                      text: Text(
+                    child: MiniTopic(
+                      text: const Text(
                         MyStrings.viewHotestBlog,
                       ),
+                      onPressed: () {
+                        log(
+                          name: MyStrings.viewHotestBlog,
+                          "mini topic worked   ${SizeController(context).size}",
+                        );
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ArticleListScreen(),
+                        ));
+                      },
                     ),
                   ),
                   SizedBox(
                     height: SizeController(context).miniTopicSize.height,
                   ),
-                  //top visited blog item bar
+                  // Top visited blog item bar
                   topVisitedBlogBar(context),
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween,
                   ),
-                  //mini topic for podcasts
+                  // Mini topic for podcasts
                   Padding(
                     padding: EdgeInsets.only(
                         left: SizeController(context).screenPadding),
@@ -74,9 +87,9 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: SizeController(context).miniTopicSize.height,
                   ),
-                  //top visited podcast item bar
+                  // Top visited podcast item bar
                   topVisitedPodcastBar(context),
-                  // end of screen sized box
+                  // End of screen sized box
                   SizedBox(
                     height: SizeController(context).bodySpaceBetween +
                         SizeController(context)
@@ -93,6 +106,7 @@ class HomeScreen extends StatelessWidget {
     });
   }
 
+  // Poster widget
   Widget poster(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(SizeController(context).screenPadding, 10,
@@ -148,7 +162,7 @@ class HomeScreen extends StatelessWidget {
               },
             ),
           ),
-          //poster details
+          // Poster details
           Positioned(
             bottom: 10,
             left: 15,
@@ -169,6 +183,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // Top visited podcast bar widget
   Widget topVisitedPodcastBar(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
@@ -185,23 +200,16 @@ class HomeScreen extends StatelessWidget {
                   : const EdgeInsets.fromLTRB(0, 0, 16, 0),
               child: Column(
                 children: [
-                  //podcast poster
+                  // Podcast poster
                   items.poster(
-                      homeScreenController.topPodcasts[index].poster!,
-                      SizeController(context).size,
-                      SizeController.podCastItemSize,
-                      homeScreenController.topPodcasts[index].author,
-                      homeScreenController.topPodcasts[index].view,
-                      TextDirection.rtl,
-                      showAuthor: true),
-                  // items.poster(
-                  //   homeScreenController.topPodcasts[index].poster!,
-                  //   SizeController(context).size,
-                  //   SizeController.podCastItemSize,
-                  //   homeScreenController.topPodcasts[index].publisher!,
-                  //   homeScreenController.topPodcasts[index].view,
-                  //   TextDirection.rtl,
-                  // ),
+                    imageUrl: homeScreenController.topPodcasts[index].poster!,
+                    size: SizeController(context).size,
+                    itemPosterSize: SizeController.podCastItemSize,
+                    auther: homeScreenController.topPodcasts[index].author,
+                    ownerTextDirection: TextDirection.rtl,
+                    view: homeScreenController.topPodcasts[index].view,
+                    showAuthor: true,
+                  ),
                   const SizedBox(
                     height: 8,
                   ),
@@ -222,6 +230,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // Top visited blog bar widget
   Widget topVisitedBlogBar(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
@@ -238,16 +247,17 @@ class HomeScreen extends StatelessWidget {
                   : const EdgeInsets.fromLTRB(0, 0, 16, 0),
               child: Column(
                 children: [
-                  //article poster
+                  // Article poster
                   items.poster(
-                      homeScreenController.topVisited[index].image!,
-                      SizeController(context).size,
-                      SizeController.blogItemSize,
-                      homeScreenController.topVisited[index].author!,
-                      homeScreenController.topVisited[index].view,
-                      TextDirection.rtl,
-                      showAuthor: true,
-                      showViews: true),
+                    imageUrl: homeScreenController.topVisited[index].image!,
+                    auther: homeScreenController.topVisited[index].author!,
+                    view: homeScreenController.topVisited[index].view,
+                    size: SizeController(context).size,
+                    ownerTextDirection: TextDirection.rtl,
+                    itemPosterSize: SizeController.blogItemSize,
+                    showAuthor: true,
+                    showViews: true,
+                  ),
                   const SizedBox(
                     height: 8,
                   ),
@@ -270,6 +280,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // Tag bar widget
   Widget tagBar() {
     return SingleChildScrollView(
       child: SizedBox(
