@@ -1,50 +1,52 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:tech_blog_v2/controller/article_controller.dart';
+import 'package:tech_blog_v2/controller/podcast_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
+import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
 
-/// Displays a list of articles.
-class ArticleListScreen extends StatelessWidget {
-  ArticleListScreen({super.key});
+/// Displays a list of podcasts.
+class PodcastListScreen extends StatelessWidget {
+  PodcastListScreen({super.key});
 
   // Using final for immutability.
-  final ArticleController articleController = Get.put(ArticleController());
+  final PodcastController podcastController = Get.put(PodcastController());
 
   @override
   Widget build(BuildContext context) {
-    double articleListItemHeight = 110; // Fixed item height
+    double podcastListItemHeight = 110; // Fixed item height
 
     return Scaffold(
       backgroundColor: Colors.white,
       // Custom app bar with title.
       appBar: appBar(
-        title: MyStrings.articleListScreenAppBar,
+        title: MyStrings.podcastListScreenAppBar,
         context: context,
       ),
       body: Obx(
         // Rebuilds when article list updates.
         () => ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: articleController.articleList.length,
+          itemCount: podcastController.podcastList.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.fromLTRB(34, index == 0 ? 10 : 0, 34, 34),
               child: SizedBox(
-                height: articleListItemHeight,
+                height: podcastListItemHeight,
                 width: double.infinity,
                 child: Row(
                   textDirection: TextDirection.rtl,
                   children: [
-                    // Article image.
+                    // Podcast image.
                     SizedBox(
-                      width: articleListItemHeight,
+                      width: podcastListItemHeight,
                       child: CachedNetworkImage(
-                        imageUrl: articleController.articleList[index].image!,
+                        imageUrl: podcastController.podcastList[index].poster!,
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             decoration: BoxDecoration(
@@ -70,20 +72,21 @@ class ArticleListScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 27),
-                    // Article details: title, view count, and author.
+                    // Podcast details: title, view count, and author.
                     SizedBox(
                       width: SizeController(context).size.width / 2.3,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          // Article title.
+                          // Podcast title.
                           Text(
-                            articleController.articleList[index].title!,
+                            podcastController.podcastList[index].title ??
+                                "ERROR: 404",
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             textDirection: TextDirection.rtl,
-                            style: TextStyleLib().articleListScreenItemsTitle,
+                            style: TextStyleLib().podcastListScreenItemsTitle,
                           ),
                           // View count and author.
                           Row(
@@ -91,27 +94,34 @@ class ArticleListScreen extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  const Icon(
-                                    Icons.remove_red_eye_rounded,
-                                    size: 20,
-                                    color: SolidColors.articleListItemsViewText,
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 2),
+                                    child: SvgPicture.asset(
+                                      Assets.icons.headphone,
+                                      width: 14,
+                                      colorFilter: const ColorFilter.mode(
+                                          SolidColors
+                                              .podcastListItemsListenText,
+                                          BlendMode.srcIn),
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 8,
                                   ),
                                   Text(
-                                    articleController.articleList[index].view!,
+                                    podcastController.podcastList[index].view!,
                                     style: TextStyleLib()
-                                        .articleListScreenItemsView,
+                                        .podcastListScreenItemsListen,
                                   ),
                                 ],
                               ),
                               SizedBox(
                                 width: 100,
                                 child: Text(
-                                  articleController.articleList[index].author!,
+                                  podcastController
+                                      .podcastList[index].publisher!,
                                   style: TextStyleLib()
-                                      .articleListScreenItemsAothor,
+                                      .podcastListScreenItemsPublisher,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   textDirection: TextDirection.rtl,

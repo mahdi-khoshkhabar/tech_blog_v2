@@ -75,12 +75,43 @@ class TextStyleLib {
     fontFamily: FontFamily.dana,
     fontSize: 14,
     color: SolidColors.articleListItemsTitleText,
+    fontWeight: FontWeight.bold,
   );
 
   TextStyle articleListScreenItemsAothor = const TextStyle(
     fontFamily: FontFamily.dana,
     color: SolidColors.articleListItemsAuthorText,
     fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
 
+  TextStyle articleListScreenItemsView = const TextStyle(
+    fontFamily: FontFamily.dana,
+    color: SolidColors.articleListItemsViewText,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+
+  // Text styles for the podcast list screen
+
+  TextStyle podcastListScreenItemsTitle = const TextStyle(
+    fontFamily: FontFamily.dana,
+    fontSize: 14,
+    color: SolidColors.podcastListItemsTitleText,
+    fontWeight: FontWeight.bold,
+  );
+
+  TextStyle podcastListScreenItemsPublisher = const TextStyle(
+    fontFamily: FontFamily.dana,
+    color: SolidColors.podcastListItemsAuthorText,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+
+  TextStyle podcastListScreenItemsListen = const TextStyle(
+    fontFamily: FontFamily.dana,
+    color: SolidColors.podcastListItemsListenText,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
   );
 }

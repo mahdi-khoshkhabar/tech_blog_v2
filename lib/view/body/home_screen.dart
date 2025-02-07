@@ -16,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
 import 'package:tech_blog_v2/view/artile_list_screen.dart';
+import 'package:tech_blog_v2/view/podcast_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -78,12 +79,18 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         left: SizeController(context).screenPadding),
-                    child: const MiniTopic(
-                      text: Text(
+                    child: MiniTopic(
+                      text: const Text(
                         MyStrings.viewHotestPodCasts,
                       ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PodcastListScreen(),
+                        ));
+                      },
                     ),
                   ),
+
                   SizedBox(
                     height: SizeController(context).miniTopicSize.height,
                   ),
@@ -205,7 +212,7 @@ class HomeScreen extends StatelessWidget {
                     imageUrl: homeScreenController.topPodcasts[index].poster!,
                     size: SizeController(context).size,
                     itemPosterSize: SizeController.podCastItemSize,
-                    auther: homeScreenController.topPodcasts[index].author,
+                    auther: homeScreenController.topPodcasts[index].publisher,
                     ownerTextDirection: TextDirection.rtl,
                     view: homeScreenController.topPodcasts[index].view,
                     showAuthor: true,

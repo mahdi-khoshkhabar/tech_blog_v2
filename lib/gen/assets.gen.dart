@@ -19,6 +19,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/eye.png
   AssetGenImage get eye => const AssetGenImage('assets/icons/eye.png');
 
+  /// File path: assets/icons/headphone.svg
+  String get headphone => 'assets/icons/headphone.svg';
+
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
 
@@ -29,7 +32,7 @@ class $AssetsIconsGen {
   AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [bluePenIcon, eye, home, user, write];
+  List<dynamic> get values => [bluePenIcon, eye, headphone, home, user, write];
 }
 
 class $AssetsImagesGen {

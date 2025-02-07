@@ -9,6 +9,7 @@ class MyStrings {
 
   static const String viewHotestBlog = "View the hottest blogs";
   static const String articleListScreenAppBar = "New Articles";
+  static const String podcastListScreenAppBar = "New Podcasts";
   static const String viewHotestPodCasts = "View the hottest podcasts";
   static const String relatedArticle = "Related Articles";
   static const String submitArticle = "Submit Article";

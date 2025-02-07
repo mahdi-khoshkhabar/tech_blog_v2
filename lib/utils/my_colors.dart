@@ -26,7 +26,14 @@ class SolidColors {
   static const Color subText = Color.fromARGB(255, 197, 197, 197);
   static const Color hintText = Color.fromARGB(146, 107, 107, 107);
   static const Color articleListItemsTitleText = Color.fromARGB(255, 0, 0, 0);
-  static const Color articleListItemsAuthorText = Color.fromARGB(255, 97, 97, 97);
+  static const Color podcastListItemsTitleText = Color.fromARGB(255, 0, 0, 0);
+  static const Color articleListItemsAuthorText =
+      Color.fromARGB(255, 97, 97, 97);
+  static const Color articleListItemsViewText = Color.fromARGB(255, 97, 97, 97);
+  static const Color podcastListItemsAuthorText =
+      Color.fromARGB(255, 97, 97, 97);
+  static const Color podcastListItemsListenText =
+      Color.fromARGB(255, 97, 97, 97);
   static const Color writeScreenWelcomeTextColor =
       Color.fromARGB(255, 80, 80, 80);
 

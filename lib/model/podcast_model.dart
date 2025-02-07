@@ -7,8 +7,9 @@ class PodcastModel {
   String? categoryName;
   String? view;
   String? createdAt;
-  String? author;
+  String? publisher;
   String? status;
+  // bool? isFavorite;
 
   PodcastModel({
     required this.id,
@@ -17,18 +18,19 @@ class PodcastModel {
     required this.categoryName,
     required this.view,
     required this.createdAt,
-    required this.author,
+    required this.publisher,
     required this.status,
+    // this.isFavorite,
   });
 
   PodcastModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
-    poster = ApiConstant.hostdlUrl+ element["poster"];
+    poster = ApiConstant.hostdlUrl + element["poster"];
     categoryName = element["cat_name"];
     view = element["view"];
     createdAt = element["created_at"];
-    author = element["author"];
+    publisher = element["publisher"];
     status = element["status"];
   }
 }
