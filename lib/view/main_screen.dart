@@ -12,7 +12,7 @@ import 'package:tech_blog_v2/model/drawer.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
 import 'package:tech_blog_v2/view/body/profile_screen.dart';
-import 'package:tech_blog_v2/view/sign_up_for_submit_article_screen.dart';
+import 'package:tech_blog_v2/view/sign_up_screen.dart';
 import 'package:get/get.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();

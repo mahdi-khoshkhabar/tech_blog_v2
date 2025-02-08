@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
@@ -27,6 +28,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    log(name: "app size", SizeController(context).size.toString());
     return MaterialApp(
       // localizationsDelegates: [
       //   GlobalMaterialLocalizations.delegate,
@@ -36,9 +38,21 @@ class MyApp extends StatelessWidget {
       // supportedLocales: [
       //   Locale('fa'), // Persian
       // ],
-      // home: ArticleListScreen(),
       home: SplashScreen(size: SizeController(context).size),
-      // home: MainScreen(size: size, bodySpaceBetween: bodySpaceBetween),
+      // home: ArticleSinglePage(
+      //   articleModel: ArticleModel(
+      //       id: "1",
+      //       title:
+      //           "رازهای اساسینز کرید والهالا؛ از هری پاتر و ارباب حلقه‌ها تا دارک سولز",
+      //       image:
+      //           "${ApiConstant.hostdlUrl}/Techblog/assets/upload/images/article/valhalla.jpg",
+      //       catId: "2",
+      //       catName: "catName",
+      //       author: "مهدی خوش خبر",
+      //       view: "view",
+      //       status: "false",
+      //       createdAt: "createdAt"),
+      // ),
     );
   }
 }

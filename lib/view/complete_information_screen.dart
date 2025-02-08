@@ -34,7 +34,7 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
     for (int index = 0; index < FakeData().hashTagStringList.length; index++) {
       selectableHashTagBoxList.add(SelectableHashTagBox(
         hashTagBox: TagBox(
-            hashTagModel: TagModel(
+            tagModel: TagModel(
                 title: FakeData().hashTagStringList[index], id: '$index')),
         hashTagBoxList: favoriteHashTagList,
         //TODO: add some function here to update favorite hash tags

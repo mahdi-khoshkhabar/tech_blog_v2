@@ -303,8 +303,7 @@ class HomeScreen extends StatelessWidget {
                       ? EdgeInsets.fromLTRB(
                           SizeController(context).screenPadding, 0, 16, 0)
                       : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                  child:
-                      TagBox(hashTagModel: homeScreenController.tags[index]));
+                  child: TagBox(tagModel: homeScreenController.tags[index]));
             },
           )),
     );

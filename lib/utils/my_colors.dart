@@ -36,6 +36,7 @@ class SolidColors {
       Color.fromARGB(255, 97, 97, 97);
   static const Color writeScreenWelcomeTextColor =
       Color.fromARGB(255, 80, 80, 80);
+  static const Color articleSinglePageTitleText = Colors.black;
 
   // Button colors
   static const Color profileButtonSplashColor =
@@ -46,6 +47,7 @@ class SolidColors {
   // Icon colors
   static const Color lightIcon = Color.fromARGB(255, 255, 255, 255);
   static const Color blackColor = Color.fromARGB(255, 4, 4, 4);
+  static const Color singlePageAppBarIcon = Color.fromARGB(255, 255, 255, 255);
 
   // Miscellaneous colors
   static const Color miniTopicColor = Color(0xFF286BB8);
@@ -98,7 +100,8 @@ class GradientColors {
   ];
   static const List<Color> singleAppbarGradiant = [
     Color.fromARGB(255, 46, 3, 71),
-    Color.fromARGB(0, 0, 0, 0)
+    Color.fromARGB(120, 46, 3, 71),
+    Colors.transparent,
   ];
 }
 

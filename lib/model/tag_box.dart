@@ -6,10 +6,10 @@ import 'package:tech_blog_v2/utils/text_style.dart';
 class TagBox extends StatelessWidget {
   const TagBox({
     super.key,
-    required this.hashTagModel,
+    required this.tagModel,
     this.textColor,
   });
-  final TagModel hashTagModel;
+  final TagModel tagModel;
   final Color? textColor;
 
   @override
@@ -18,7 +18,7 @@ class TagBox extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: hashTagModel.favoriteStatues == true
+              colors: tagModel.favoriteStatues == true
                   ? GradientColors.favoriteTags
                   : GradientColors.tags,
               begin: Alignment.centerLeft,
@@ -39,7 +39,7 @@ class TagBox extends StatelessWidget {
             // ),
             Text(
               textAlign: TextAlign.center,
-              hashTagModel.title!,
+              tagModel.title!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyleLib().tagTitle,
@@ -73,14 +73,14 @@ class _SelectableHashTagBoxState extends State<SelectableHashTagBox> {
     return InkWell(
       onTap: () {
         // تغییر وضعیت favorite
-        if (widget.hashTagBox.hashTagModel.favoriteStatues != true) {
-          widget.hashTagBox.hashTagModel.favoriteStatues = true;
-          if (!widget.hashTagBoxList.contains(widget.hashTagBox.hashTagModel)) {
-            widget.hashTagBoxList.add(widget.hashTagBox.hashTagModel);
+        if (widget.hashTagBox.tagModel.favoriteStatues != true) {
+          widget.hashTagBox.tagModel.favoriteStatues = true;
+          if (!widget.hashTagBoxList.contains(widget.hashTagBox.tagModel)) {
+            widget.hashTagBoxList.add(widget.hashTagBox.tagModel);
           }
         } else {
-          widget.hashTagBox.hashTagModel.favoriteStatues = false;
-          widget.hashTagBoxList.remove(widget.hashTagBox.hashTagModel);
+          widget.hashTagBox.tagModel.favoriteStatues = false;
+          widget.hashTagBoxList.remove(widget.hashTagBox.tagModel);
         }
 
         // فراخوانی تابع برای به‌روزرسانی صفحه

@@ -114,4 +114,13 @@ class TextStyleLib {
     fontSize: 14,
     fontWeight: FontWeight.normal,
   );
+
+  // Text styles for the articles single page
+
+  TextStyle articleSinglePageTitle = const TextStyle(
+    fontFamily: FontFamily.dana,
+    fontSize: 20,
+    color: SolidColors.articleSinglePageTitleText,
+    fontWeight: FontWeight.bold,
+  );
 }

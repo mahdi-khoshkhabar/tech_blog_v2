@@ -16,6 +16,10 @@ class $AssetsIconsGen {
   AssetGenImage get bluePenIcon =>
       const AssetGenImage('assets/icons/blue_pen_icon.png');
 
+  /// File path: assets/icons/bookmark.png
+  AssetGenImage get bookmark =>
+      const AssetGenImage('assets/icons/bookmark.png');
+
   /// File path: assets/icons/eye.png
   AssetGenImage get eye => const AssetGenImage('assets/icons/eye.png');
 
@@ -25,6 +29,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
 
+  /// File path: assets/icons/left_arrow.svg
+  String get leftArrow => 'assets/icons/left_arrow.svg';
+
+  /// File path: assets/icons/share.png
+  AssetGenImage get share => const AssetGenImage('assets/icons/share.png');
+
   /// File path: assets/icons/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
 
@@ -32,7 +42,17 @@ class $AssetsIconsGen {
   AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
 
   /// List of all assets
-  List<dynamic> get values => [bluePenIcon, eye, headphone, home, user, write];
+  List<dynamic> get values => [
+        bluePenIcon,
+        bookmark,
+        eye,
+        headphone,
+        home,
+        leftArrow,
+        share,
+        user,
+        write
+      ];
 }
 
 class $AssetsImagesGen {

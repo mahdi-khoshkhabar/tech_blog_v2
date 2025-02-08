@@ -4,6 +4,7 @@ class ArticleModel {
   String? id;
   String? title;
   String? image;
+  String? content;
   String? catId;
   String? catName;
   String? author;
@@ -21,6 +22,7 @@ class ArticleModel {
     required this.view,
     required this.status,
     required this.createdAt,
+    this.content,
     // this.isFavorite,
   });
 
