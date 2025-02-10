@@ -3,7 +3,7 @@ import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/services/dio_service.dart';
 import 'package:tech_blog_v2/utils/api_constant.dart';
 
-class ArticleController extends GetxController {
+class ListArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();
   RxBool isLoading = false.obs;
 

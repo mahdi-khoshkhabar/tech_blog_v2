@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tech_blog_v2/controller/article_controller.dart';
+import 'package:tech_blog_v2/controller/list_article_controller.dart';
+import 'package:tech_blog_v2/controller/single_page_article_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
@@ -10,15 +11,15 @@ import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
 import 'package:tech_blog_v2/view/article_single_page.dart';
 
-/// Displays a list of articles.
 class ArticleListScreen extends StatelessWidget {
-  ArticleListScreen({super.key});
-
-  // Using final for immutability.
-  final ArticleController articleController = Get.put(ArticleController());
+  const ArticleListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ListArticleController listaAticleController =
+        Get.put(ListArticleController());
+    SinglePageArticleController singlePageArticleController =
+        Get.put(SinglePageArticleController());
     double articleListItemHeight = 110; // Fixed item height
 
     return Scaffold(
@@ -32,16 +33,19 @@ class ArticleListScreen extends StatelessWidget {
         // Rebuilds when article list updates.
         () => ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: articleController.articleList.length,
+          itemCount: listaAticleController.articleList.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.fromLTRB(34, index == 0 ? 10 : 0, 34, 34),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(CupertinoPageRoute(
-                    builder: (context) =>
-                        ArticleSinglePage(articleModel: articleController.articleList[index]),
-                  ));
+                  singlePageArticleController.id.value = int.parse(
+                      listaAticleController.articleList[index].id.toString());
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const ArticleSinglePage(),
+                      ));
                 },
                 child: SizedBox(
                   height: articleListItemHeight,
@@ -53,7 +57,8 @@ class ArticleListScreen extends StatelessWidget {
                       SizedBox(
                         width: articleListItemHeight,
                         child: CachedNetworkImage(
-                          imageUrl: articleController.articleList[index].image!,
+                          imageUrl:
+                              listaAticleController.articleList[index].image!,
                           imageBuilder: (context, imageProvider) {
                             return Container(
                               decoration: BoxDecoration(
@@ -88,7 +93,7 @@ class ArticleListScreen extends StatelessWidget {
                           children: [
                             // Article title.
                             Text(
-                              articleController.articleList[index].title!,
+                              listaAticleController.articleList[index].title!,
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                               textDirection: TextDirection.rtl,
@@ -110,7 +115,7 @@ class ArticleListScreen extends StatelessWidget {
                                       width: 8,
                                     ),
                                     Text(
-                                      articleController
+                                      listaAticleController
                                           .articleList[index].view!,
                                       style: TextStyleLib()
                                           .articleListScreenItemsView,
@@ -120,7 +125,7 @@ class ArticleListScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 100,
                                   child: Text(
-                                    articleController
+                                    listaAticleController
                                         .articleList[index].author!,
                                     style: TextStyleLib()
                                         .articleListScreenItemsAothor,

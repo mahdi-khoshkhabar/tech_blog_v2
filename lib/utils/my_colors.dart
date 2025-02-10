@@ -81,14 +81,14 @@ class GradientColors {
     Color.fromARGB(0, 255, 255, 225),
     Color.fromARGB(255, 255, 255, 255),
   ];
-  static const List<Color> tags = [
+  static const List<Color> blackTagBox = [
     Color.fromARGB(255, 0, 0, 0),
     Color.fromARGB(255, 63, 63, 63),
   ];
-  static const List<Color> favoriteTags = [
-    Color.fromARGB(255, 0, 255, 217),
-    Color.fromARGB(255, 255, 0, 183),
-  ];
+  // static const List<Color> favoriteTags = [
+  //   Color.fromARGB(255, 0, 255, 217),
+  //   Color.fromARGB(255, 255, 0, 183),
+  // ];
   static const List<Color> homeScreenItemPosterColor = [
     Color.fromARGB(255, 0, 0, 0),
     Color.fromARGB(0, 0, 0, 0)
@@ -106,9 +106,15 @@ class GradientColors {
 }
 
 class ListColor {
-  // Colors for article list screen
+  // article list screen
   static List<Color> appBarIcon = [
     Color.fromARGB(200, 255, 255, 255),
     SolidColors.primaryColor.withAlpha(200),
+  ];
+
+  // article single page
+  static List<Color> witeTagBox = [
+    Color.fromARGB(200, 242, 242, 242), //background
+    Colors.black, //text
   ];
 }

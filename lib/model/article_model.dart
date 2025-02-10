@@ -29,7 +29,7 @@ class ArticleModel {
   ArticleModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
-    image = ApiConstant.hostdlUrl + element["image"];
+    image = ApiConstant.hostDlUrl + element["image"];
     catId = element["cat_id"];
     catName = element["cat_name"];
     author = element["author"];

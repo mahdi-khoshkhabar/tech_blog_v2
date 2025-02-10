@@ -26,7 +26,6 @@ class TextStyleLib {
 
   // Text styles for specific models
   TextStyle tagTitle = const TextStyle(
-      color: Colors.white,
       fontFamily: FontFamily.dana,
       fontWeight: FontWeight.bold,
       fontSize: 15);

@@ -14,6 +14,6 @@ class Poster {
   Poster.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
-    image = ApiConstant.hostdlUrl + element["image"];
+    image = ApiConstant.hostDlUrl + element["image"];
   }
 }

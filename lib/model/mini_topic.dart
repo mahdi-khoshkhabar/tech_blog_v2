@@ -5,6 +5,7 @@ import 'package:tech_blog_v2/utils/text_style.dart';
 
 class MiniTopic extends StatelessWidget {
   const MiniTopic({
+    required this.shawIcon,
     super.key,
     required this.text,
     this.icon,
@@ -17,6 +18,7 @@ class MiniTopic extends StatelessWidget {
   final Image? image;
   final MainAxisAlignment? inputMainAxisAlignment;
   final GestureTapCallback? onPressed;
+  final bool shawIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +27,13 @@ class MiniTopic extends StatelessWidget {
       child: Row(
         mainAxisAlignment: inputMainAxisAlignment ?? MainAxisAlignment.start,
         children: [
-          // icon == null
-          //     ? const SizedBox.shrink()
-          //     : Icon(
-          //         icon!.icon,
-          //         color: icon!.color ?? Colors.black,
-          //         size: icon!.size ?? 24,
-          //       ),
-          Image(
-            image: image?.image ?? Assets.icons.bluePenIcon.provider(),
-            height: image?.height ?? 18,
-            color: image?.color ?? SolidColors.miniTopicColor,
-          ),
+          shawIcon == true
+              ? Image(
+                  image: image?.image ?? Assets.icons.bluePenIcon.provider(),
+                  height: image?.height ?? 18,
+                  color: image?.color ?? SolidColors.miniTopicColor,
+                )
+              : const SizedBox.shrink(),
           const SizedBox(
             width: 10,
           ),

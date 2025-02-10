@@ -14,7 +14,7 @@ void main() {
       systemNavigationBarColor: SolidColors.systemNavigationBarColor,
       systemNavigationBarIconBrightness: Brightness.dark));
 
-  // محدود کردن جهت‌گیری صفحه به حالت پرتره
+  // Restrict screen orientation to portrait mode
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([
@@ -39,22 +39,6 @@ class MyApp extends StatelessWidget {
       //   Locale('fa'), // Persian
       // ],
       home: SplashScreen(size: SizeController(context).size),
-      // home: ArticleSinglePage(
-      //   articleModel: ArticleModel(
-      //       id: "1",
-      //       title:
-      //           "رازهای اساسینز کرید والهالا؛ از هری پاتر و ارباب حلقه‌ها تا دارک سولز",
-      //       image:
-      //           "${ApiConstant.hostdlUrl}/Techblog/assets/upload/images/article/valhalla.jpg",
-      //       catId: "2",
-      //       catName: "catName",
-      //       author: "مهدی خوش خبر",
-      //       view: "view",
-      //       status: "false",
-      //       createdAt: "createdAt"),
-      // ),
     );
   }
 }
-
-//TODO: build single page

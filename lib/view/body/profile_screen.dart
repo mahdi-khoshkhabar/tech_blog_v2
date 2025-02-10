@@ -37,6 +37,7 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: MiniTopic(
+                    shawIcon: true,
                     text: Text(
                       MyStrings.imageProfileEdit,
                     ),

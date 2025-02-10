@@ -33,7 +33,7 @@ class _CompleteInfoScreenState extends State<CompleteInfoScreen> {
     // Initial hash tag box setup
     for (int index = 0; index < FakeData().hashTagStringList.length; index++) {
       selectableHashTagBoxList.add(SelectableHashTagBox(
-        hashTagBox: TagBox(
+        hashTagBox: BlackTagBox(
             tagModel: TagModel(
                 title: FakeData().hashTagStringList[index], id: '$index')),
         hashTagBoxList: favoriteHashTagList,

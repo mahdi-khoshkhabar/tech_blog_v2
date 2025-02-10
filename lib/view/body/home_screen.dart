@@ -54,6 +54,7 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: SizeController(context).screenPadding),
                     child: MiniTopic(
+                      shawIcon: true,
                       text: const Text(
                         MyStrings.viewHotestBlog,
                       ),
@@ -81,6 +82,7 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: SizeController(context).screenPadding),
                     child: MiniTopic(
+                      shawIcon: true,
                       text: const Text(
                         MyStrings.viewHotestPodCasts,
                       ),
@@ -303,7 +305,8 @@ class HomeScreen extends StatelessWidget {
                       ? EdgeInsets.fromLTRB(
                           SizeController(context).screenPadding, 0, 16, 0)
                       : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                  child: TagBox(tagModel: homeScreenController.tags[index]));
+                  child:
+                      BlackTagBox(tagModel: homeScreenController.tags[index]));
             },
           )),
     );
