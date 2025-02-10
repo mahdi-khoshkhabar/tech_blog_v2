@@ -34,14 +34,14 @@ class MyDrawer extends StatelessWidget {
             const Divider(),
             //ablout techblog
             selectableRow(
-                myText: MyStrings.aboutTec,
+                myText: MyStrings.aboutTechBlog,
                 myVoid: () {
                   launchUrlFunc(MyStrings.techBlogWebPageUrl, context);
                 }),
             const Divider(),
             //share techblog
             selectableRow(
-                myText: MyStrings.shareTec,
+                myText: MyStrings.shareTechBlog,
                 myVoid: () async {
                   log("share sucessful");
                   await Share.share(
@@ -50,7 +50,7 @@ class MyDrawer extends StatelessWidget {
             const Divider(),
             //techblog on github
             selectableRow(
-                myText: MyStrings.tecIngithub,
+                myText: MyStrings.techIngithub,
                 myVoid: () {
                   launchUrlFunc(MyStrings.techBlogGithubUrl, context);
                 }),

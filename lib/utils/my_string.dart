@@ -65,9 +65,9 @@ I am the main body of the article, if you want to edit me and write an interesti
   static String writePodcast = "Write Podcast";
   static String titleArticleText = "Articles";
   static String userProfile = "User Profile";
-  static String aboutTec = "About Tak Blog";
-  static String shareTec = "Share Tak Blog";
-  static String tecIngithub = "Tak Blog on GitHub";
+  static String aboutTechBlog = "About Tech Blog";
+  static String shareTechBlog = "Share Tech Blog";
+  static String techIngithub = "Tech Blog on GitHub";
   static String shareKnowledge = "Share your knowledge with others...";
   static String gigTech = """
 Imagine!! Being here means you're a tech geek.
