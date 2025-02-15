@@ -12,6 +12,8 @@ class ArticleInfoModel {
   String? status;
   String? createdAt;
   bool? isFavorite;
+  // List<ArticleModel> relatedList = [];
+  // List<TagModel> tagsList = [];
 
   ArticleInfoModel();
   ArticleInfoModel.fromJson(Map<String, dynamic> element) {
@@ -19,7 +21,7 @@ class ArticleInfoModel {
     id = info['id'];
     title = info['title'];
     content = info['content'];
-    image = ApiConstant.hostDlUrl + info['image'];
+     image = ApiConstant.hostDlUrl + info['image'];
     catId = info['cat_id'];
     catName = info['cat_name'];
     author = info['author'];
@@ -27,8 +29,14 @@ class ArticleInfoModel {
     status = info['status'];
     createdAt = info['created_at'];
     isFavorite = element["isFavorite"];
+    // relatedList = List<ArticleModel>.from(
+    //     element["related"].map((response) => ArticleModel.fromJson(response)));
+    // tagsList = List<TagModel>.from(
+    //     element["tags"].map((response) => TagModel.fromJson(response)));
   }
 }
+
+
 
 // {
 //     "info": {

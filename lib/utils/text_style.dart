@@ -26,9 +26,7 @@ class TextStyleLib {
 
   // Text styles for specific models
   TextStyle tagTitle = const TextStyle(
-      fontFamily: FontFamily.dana,
-      fontWeight: FontWeight.bold,
-      fontSize: 15);
+      fontFamily: FontFamily.dana, fontWeight: FontWeight.bold, fontSize: 15);
 
   TextStyle miniTopic = const TextStyle(
       fontFamily: FontFamily.dana,

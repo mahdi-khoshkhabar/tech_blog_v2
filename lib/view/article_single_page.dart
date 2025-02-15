@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
+import 'package:tech_blog_v2/controller/list_article_controller.dart';
 import 'package:tech_blog_v2/controller/single_page_article_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
@@ -13,11 +12,11 @@ import 'package:tech_blog_v2/gen/fonts.gen.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
 import 'package:tech_blog_v2/model/tag_box.dart';
-import 'package:tech_blog_v2/model/tag_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
+import 'package:tech_blog_v2/view/artile_list_screen.dart';
 
 class ArticleSinglePage extends StatefulWidget {
   const ArticleSinglePage({
@@ -31,10 +30,11 @@ class ArticleSinglePage extends StatefulWidget {
 class _ArticleSinglePageState extends State<ArticleSinglePage> {
   SinglePageArticleController singlePageArticleController =
       Get.put(SinglePageArticleController());
+  ListArticleController listArticleController =
+      Get.put(ListArticleController());
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     singlePageArticleController.getArticleInfo();
   }
@@ -44,6 +44,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
     ItemsBasicIngredients items = ItemsBasicIngredients();
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
+        // for change status bars calor
         value: SystemUiOverlayStyle.light.copyWith(
           statusBarIconBrightness:
               Brightness.light, // برای تنظیم رنگ آیکون‌ها (سفید یا مشکی)
@@ -114,13 +115,13 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                         children: [
                                           Assets.images.profileAvatar
                                               .image(width: 30),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 8,
                                           ),
                                           Text(
                                             singlePageArticleController
                                                 .articleInfoModel.value.author!,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: FontFamily.dana,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold),
@@ -133,7 +134,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                         singlePageArticleController
                                             .articleInfoModel.value.createdAt!,
                                         textDirection: TextDirection.rtl,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontFamily: FontFamily.dana,
                                             color: Color.fromARGB(
                                                 255, 155, 155, 155),
@@ -153,7 +154,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                             width: double.infinity,
                             child: HtmlWidget(
                               '<p dir="rtl">${singlePageArticleController.articleInfoModel.value.content!}',
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontFamily: FontFamily.dana,
                                 color: Colors.black,
                                 fontSize: 16,
@@ -166,7 +167,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 120,
                         ),
                         // Hash tag bar
@@ -175,7 +176,8 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                               width: double.infinity,
                               height: 50,
                               child: ListView.builder(
-                                itemCount: 10,
+                                itemCount:
+                                    singlePageArticleController.tagsList.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return Padding(
@@ -188,13 +190,24 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                               0)
                                           : const EdgeInsets.fromLTRB(
                                               0, 0, 16, 0),
-                                      child: WhiteTagBox(
-                                          tagModel: TagModel(
-                                              id: "1", title: "title")));
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          var tagId =
+                                              singlePageArticleController
+                                                  .tagsList[index].id!;
+                                          await listArticleController
+                                              .getArticleListWithTagId(tagId);
+                                          Get.off(() => const ArticleListScreenWithTagId());
+                                        },
+                                        child: WhiteTagBox(
+                                          tagModel: singlePageArticleController
+                                              .tagsList[index],
+                                        ),
+                                      ));
                                 },
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         // topic for Related posts
@@ -214,7 +227,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                             },
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         // Related posts
@@ -223,7 +236,8 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                             width: double.infinity,
                             height: SizeController(context).size.height / 4,
                             child: ListView.builder(
-                              itemCount: 5,
+                              itemCount: singlePageArticleController
+                                  .relatedList.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 return Padding(
@@ -238,12 +252,12 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                     children: [
                                       // Article poster
                                       items.poster(
-                                        imageUrl:
-                                            "homeScreenController.topVisited[index].image!",
-                                        auther:
-                                            "homeScreenController.topVisited[index].author!",
-                                        view:
-                                            "homeScreenController.topVisited[index].view",
+                                        imageUrl: singlePageArticleController
+                                            .relatedList[index].image!,
+                                        auther: singlePageArticleController
+                                            .relatedList[index].author,
+                                        view: singlePageArticleController
+                                            .relatedList[index].view,
                                         size: SizeController(context).size,
                                         ownerTextDirection: TextDirection.rtl,
                                         itemPosterSize:
@@ -256,7 +270,8 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                       ),
                                       items.title(
                                           Text(
-                                            MyStrings.blogItemDefaultTitle,
+                                            singlePageArticleController
+                                                .relatedList[index].title!,
                                             style: TextStyleLib().blogItemTitle,
                                           ),
                                           singlePageArticleController

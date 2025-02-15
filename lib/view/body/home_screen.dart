@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,12 +57,9 @@ class HomeScreen extends StatelessWidget {
                         MyStrings.viewHotestBlog,
                       ),
                       onPressed: () {
-                        log(
-                          name: MyStrings.viewHotestBlog,
-                          "mini topic worked   ${SizeController(context).size}",
-                        );
                         Navigator.of(context).push(CupertinoPageRoute(
-                          builder: (context) => ArticleListScreen(),
+                          builder: (context) =>
+                               const ArticleListScreen(),
                         ));
                       },
                     ),
