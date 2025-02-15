@@ -147,8 +147,8 @@ class ArticleListScreen extends StatelessWidget {
 }
 
 class ArticleListScreenWithTagId extends StatelessWidget {
-  const ArticleListScreenWithTagId({super.key});
-
+  const ArticleListScreenWithTagId({super.key, this.title});
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +158,7 @@ class ArticleListScreenWithTagId extends StatelessWidget {
       backgroundColor: Colors.white,
       // Custom app bar with title.
       appBar: appBar(
-        title: MyStrings.articleListScreenAppBar,
+        title: title ?? MyStrings.articleListScreenAppBar,
         context: context,
       ),
       body: Obx(

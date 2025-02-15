@@ -197,7 +197,13 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                                   .tagsList[index].id!;
                                           await listArticleController
                                               .getArticleListWithTagId(tagId);
-                                          Get.off(() => const ArticleListScreenWithTagId());
+                                          Get.off(
+                                              () => ArticleListScreenWithTagId(
+                                                    title:
+                                                        singlePageArticleController
+                                                            .tagsList[index]
+                                                            .title,
+                                                  ));
                                         },
                                         child: WhiteTagBox(
                                           tagModel: singlePageArticleController
