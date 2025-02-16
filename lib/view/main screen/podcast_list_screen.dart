@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/podcast_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/my_string.dart';
-import 'package:tech_blog_v2/utils/my_utils.dart';
-import 'package:tech_blog_v2/utils/text_style.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/my_string.dart';
+import 'package:tech_blog_v2/components/my_components.dart';
+import 'package:tech_blog_v2/components/text_style.dart';
 
 /// Displays a list of podcasts.
 class PodcastListScreen extends StatelessWidget {

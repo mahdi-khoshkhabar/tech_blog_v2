@@ -1,4 +1,4 @@
-import 'package:tech_blog_v2/utils/api_constant.dart';
+import 'package:tech_blog_v2/components/api_constant.dart';
 
 class PodcastModel {
   String? id;

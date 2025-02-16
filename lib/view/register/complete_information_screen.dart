@@ -11,8 +11,8 @@ import 'package:tech_blog_v2/model/tag_box.dart';
 import 'package:tech_blog_v2/model/hashtag_gridview.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/tag_model.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/my_string.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/my_string.dart';
 import 'package:tech_blog_v2/themes.dart';
 
 class CompleteInfoScreen extends StatefulWidget {

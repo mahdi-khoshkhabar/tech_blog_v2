@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/model/tag_model.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/text_style.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/text_style.dart';
 
 class BlackTagBox extends StatelessWidget {
   const BlackTagBox({

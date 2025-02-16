@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/services/dio_service.dart';
-import 'package:tech_blog_v2/utils/api_constant.dart';
+import 'package:tech_blog_v2/components/api_constant.dart';
 
 class ListArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();

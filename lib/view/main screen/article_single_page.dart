@@ -12,11 +12,11 @@ import 'package:tech_blog_v2/gen/fonts.gen.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
 import 'package:tech_blog_v2/model/tag_box.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/my_string.dart';
-import 'package:tech_blog_v2/utils/my_utils.dart';
-import 'package:tech_blog_v2/utils/text_style.dart';
-import 'package:tech_blog_v2/view/artile_list_screen.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/my_string.dart';
+import 'package:tech_blog_v2/components/my_components.dart';
+import 'package:tech_blog_v2/components/text_style.dart';
+import 'package:tech_blog_v2/view/main%20screen/artile_list_screen.dart';
 
 class ArticleSinglePage extends StatelessWidget {
   final SinglePageArticleController singlePageArticleController =

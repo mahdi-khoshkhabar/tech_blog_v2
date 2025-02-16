@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/view/main_screen.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/view/main%20screen/main_screen.dart';
 // import 'package:tech_blog_v2/view/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {

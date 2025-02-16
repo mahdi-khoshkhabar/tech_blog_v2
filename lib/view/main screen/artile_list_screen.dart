@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/list_article_controller.dart';
 import 'package:tech_blog_v2/controller/single_page_article_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/my_string.dart';
-import 'package:tech_blog_v2/utils/my_utils.dart';
-import 'package:tech_blog_v2/utils/text_style.dart';
-import 'package:tech_blog_v2/view/article_single_page.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/my_string.dart';
+import 'package:tech_blog_v2/components/my_components.dart';
+import 'package:tech_blog_v2/components/text_style.dart';
+import 'package:tech_blog_v2/view/main%20screen/article_single_page.dart';
 
 class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({super.key});

@@ -8,10 +8,10 @@ import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/app_bar_icon.dart';
 import 'package:tech_blog_v2/model/drawer.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
 import 'package:tech_blog_v2/view/body/home_screen.dart';
 import 'package:tech_blog_v2/view/body/profile_screen.dart';
-import 'package:tech_blog_v2/view/sign_up_screen.dart';
+import 'package:tech_blog_v2/view/register/sign_up_screen.dart';
 import 'package:get/get.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();

@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_blog_v2/model/buttons.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/my_string.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/my_string.dart';
 import 'package:tech_blog_v2/themes.dart';
-import 'package:tech_blog_v2/view/complete_information_screen.dart';
+import 'package:tech_blog_v2/view/register/complete_information_screen.dart';
 import 'package:validators/validators.dart';
 
 Future<dynamic> showEmailBottomSheet(BuildContext context, Size size) {

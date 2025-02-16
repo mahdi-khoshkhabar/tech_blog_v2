@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
 
 class MyPurpleButton extends StatelessWidget {
   const MyPurpleButton(

@@ -3,7 +3,7 @@
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/model/podcast_model.dart';
 import 'package:tech_blog_v2/services/dio_service.dart';
-import 'package:tech_blog_v2/utils/api_constant.dart';
+import 'package:tech_blog_v2/components/api_constant.dart';
 
 class PodcastController extends GetxController {
   RxList<PodcastModel> podcastList = RxList();

@@ -6,8 +6,8 @@ import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/article_info_model.dart';
-import 'package:tech_blog_v2/utils/my_colors.dart';
-import 'package:tech_blog_v2/utils/text_style.dart';
+import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/components/text_style.dart';
 
 Widget loading() {
   return const Center(

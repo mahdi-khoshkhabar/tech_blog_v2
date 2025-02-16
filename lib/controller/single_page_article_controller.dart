@@ -3,8 +3,8 @@ import 'package:tech_blog_v2/model/article_info_model.dart';
 import 'package:tech_blog_v2/model/article_model.dart';
 import 'package:tech_blog_v2/model/tag_model.dart';
 import 'package:tech_blog_v2/services/dio_service.dart';
-import 'package:tech_blog_v2/utils/api_constant.dart';
-import 'package:tech_blog_v2/view/article_single_page.dart';
+import 'package:tech_blog_v2/components/api_constant.dart';
+import 'package:tech_blog_v2/view/main%20screen/article_single_page.dart';
 
 class SinglePageArticleController extends GetxController {
   // RxInt articleId = RxInt(0);
