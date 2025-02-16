@@ -44,7 +44,7 @@ class EmpthyProfileScreen extends StatelessWidget {
                 MyPurpleButton(
                     inputString: "Lets Go",
                     function: () {
-                      showEmailBottomSheet(context, size);
+                      showEmailBottomSheet(context);
                     })
               ],
             ),

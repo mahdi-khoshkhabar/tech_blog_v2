@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog_v2/model/buttons.dart';
 import 'package:tech_blog_v2/components/my_colors.dart';
 import 'package:tech_blog_v2/components/my_string.dart';
@@ -8,7 +9,7 @@ import 'package:tech_blog_v2/themes.dart';
 import 'package:tech_blog_v2/view/register/complete_information_screen.dart';
 import 'package:validators/validators.dart';
 
-Future<dynamic> showEmailBottomSheet(BuildContext context, Size size) {
+Future<dynamic> showEmailBottomSheet(BuildContext context) {
   TextEditingController textEditingController = TextEditingController();
   bool isEmailCorrect = false;
   return showModalBottomSheet(
@@ -22,7 +23,7 @@ Future<dynamic> showEmailBottomSheet(BuildContext context, Size size) {
         // padding: EdgeInsets.all(0),
         child: Container(
           width: double.maxFinite,
-          height: size.height / 2.57,
+          height: Get.size.height / 2.57,
           decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -33,7 +34,7 @@ Future<dynamic> showEmailBottomSheet(BuildContext context, Size size) {
               const Text(MyStrings.insertYourEmail),
               Padding(
                 padding:
-                    EdgeInsets.fromLTRB(size.width / 8, 0, size.width / 8, 0),
+                    EdgeInsets.fromLTRB(Get.size.width / 8, 0, Get.size.width / 8, 0),
                 child: TextField(
                   decoration: Themes()
                       .textFieldInputDecoration
@@ -58,7 +59,7 @@ Future<dynamic> showEmailBottomSheet(BuildContext context, Size size) {
                   }
                   if (isEmailCorrect == true) {
                     Navigator.pop(context);
-                    activateCodeBottomSheet(context, size);
+                    activateCodeBottomSheet(context);
                   }
                 },
               )
@@ -70,7 +71,7 @@ Future<dynamic> showEmailBottomSheet(BuildContext context, Size size) {
   );
 }
 
-Future<dynamic> activateCodeBottomSheet(BuildContext context, Size size) {
+Future<dynamic> activateCodeBottomSheet(BuildContext context) {
   TextEditingController textEditingController = TextEditingController();
   bool isPasswordLengthEnough = false;
   return showModalBottomSheet(
@@ -84,7 +85,7 @@ Future<dynamic> activateCodeBottomSheet(BuildContext context, Size size) {
         // padding: EdgeInsets.all(0),
         child: Container(
           width: double.maxFinite,
-          height: size.height / 2.57,
+          height: Get.size.height / 2.57,
           decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -95,7 +96,7 @@ Future<dynamic> activateCodeBottomSheet(BuildContext context, Size size) {
               const Text(MyStrings.activateCode),
               Padding(
                 padding:
-                    EdgeInsets.fromLTRB(size.width / 8, 0, size.width / 8, 0),
+                    EdgeInsets.fromLTRB(Get.size.width / 8, 0, Get.size.width / 8, 0),
                 child: TextField(
                   decoration: Themes().textFieldInputDecoration.copyWith(
                         hintText: "******",

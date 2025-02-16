@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
 import 'package:tech_blog_v2/model/bottom_sheets.dart';
@@ -17,8 +18,6 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size spaceBetweenSize = Size(10, 25);
-    Size size = MediaQuery.of(context).size;
-    // builder for blog item layout on screen
     return Scaffold(
         backgroundColor: SolidColors.backgroundColor,
         appBar: AppBar(
@@ -39,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 // welcome text
                 SizedBox(
-                  width: size.width / 1.5,
+                  width: Get.size.width / 1.5,
                   child: Text(
                     textAlign: TextAlign.center,
                     MyStrings.writeScreenWelcome,
@@ -57,7 +56,7 @@ class SignUpScreen extends StatelessWidget {
                 MyPurpleButton(
                   inputString: MyStrings.writeScreenSingUpButtonText,
                   function: () {
-                    showEmailBottomSheet(context, size);
+                    showEmailBottomSheet(context);
                   },
                 ),
               ],
