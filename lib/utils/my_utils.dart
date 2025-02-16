@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/gen/assets.gen.dart';
+import 'package:tech_blog_v2/model/article_info_model.dart';
 import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
 
@@ -37,7 +40,7 @@ PreferredSizeWidget appBar({
               padding: EdgeInsets.only(
                   left: SizeController(context).size.width / 13.4),
               child: GestureDetector(
-                onTap: backButtonOnPressed ?? () => Navigator.of(context).pop(),
+                onTap: backButtonOnPressed ?? () => Get.back(),
                 child: Container(
                   width: 50,
                   height: 50,
@@ -70,6 +73,7 @@ PreferredSizeWidget appBar({
 }
 
 PreferredSizeWidget singlePageAppBar({
+  ArticleInfoModel? article,
   VoidCallback? backButtonOnPressed,
   required BuildContext context,
 }) {
@@ -95,8 +99,7 @@ PreferredSizeWidget singlePageAppBar({
                   padding: EdgeInsets.only(
                       left: SizeController(context).size.width / 39.4),
                   child: GestureDetector(
-                    onTap: backButtonOnPressed ??
-                        () => Navigator.of(context).pop(),
+                    onTap: backButtonOnPressed ?? () => Get.back(),
                     child: SvgPicture.asset(
                       Assets.icons.leftArrow,
                       height: 50,
@@ -115,14 +118,20 @@ PreferredSizeWidget singlePageAppBar({
                   right: SizeController(context).size.width / 19.7),
               child: Row(
                 children: [
+                  // bookmark icon
                   GestureDetector(
                     child: Assets.icons.bookmark.image(
                         color: SolidColors.singlePageAppBarIcon, width: 22),
                   ),
                   const SizedBox(width: 19.6),
+                  // share icon
                   GestureDetector(
                     child: Assets.icons.share.image(
                         color: SolidColors.singlePageAppBarIcon, width: 22),
+                    onTap: () async {
+                      await Share.share(
+                          'Check out this article: \n ${article!.title}');
+                    },
                   ),
                 ],
               ),

@@ -16,6 +16,7 @@ class ListArticleController extends GetxController {
   }
 
   getArticleList() async {
+    articleList.clear();
     isLoading.value = true;
 
     //TODO get user id from store page ApiConstant.getArticleList+userId
@@ -30,6 +31,7 @@ class ListArticleController extends GetxController {
   }
 
   getArticleListWithTagId({required String tagId}) async {
+    articleListWithTagId.clear();
     isLoading.value = true;
 
     //TODO get user id from store page ApiConstant.getArticleList+userId
@@ -45,6 +47,7 @@ class ListArticleController extends GetxController {
   }
 
   getArticleListWithCatId({required String catId}) async {
+    articleListWithCatId.clear();
     isLoading.value = true;
 
     //TODO get user id from store page ApiConstant.getArticleList+userId

@@ -16,27 +16,15 @@ import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
+import 'package:tech_blog_v2/view/artile_list_screen.dart';
 
-class ArticleSinglePage extends StatefulWidget {
-  const ArticleSinglePage({
-    super.key,
-  });
-
-  @override
-  State<ArticleSinglePage> createState() => _ArticleSinglePageState();
-}
-
-class _ArticleSinglePageState extends State<ArticleSinglePage> {
-  SinglePageArticleController singlePageArticleController =
+class ArticleSinglePage extends StatelessWidget {
+  final SinglePageArticleController singlePageArticleController =
       Get.put(SinglePageArticleController());
-  ListArticleController listArticleController =
+  final ListArticleController listArticleController =
       Get.put(ListArticleController());
 
-  @override
-  void initState() {
-    super.initState();
-    singlePageArticleController.getArticleInfo();
-  }
+  ArticleSinglePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -199,6 +187,10 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                           listArticleController
                                               .getArticleListWithTagId(
                                                   tagId: tagId);
+                                          Get.to(ArticleListScreenWithTagId(
+                                            title: singlePageArticleController
+                                                .tagsList[index].title,
+                                          ));
                                         },
                                         child: WhiteTagBox(
                                           tagModel: singlePageArticleController
@@ -250,17 +242,12 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                           0)
                                       : const EdgeInsets.fromLTRB(0, 0, 16, 0),
                                   child: GestureDetector(
-                                    onTap: () async {
+                                    onTap: () {
                                       singlePageArticleController
-                                              .articleId.value =
-                                          int.parse(singlePageArticleController
-                                              .relatedList[index].id
-                                              .toString());
-                                      log('articleId: ${singlePageArticleController.articleId.value}',
-                                          name: 'related article');
-                                      // Get.to(() => const ArticleSinglePage());
-                                      singlePageArticleController
-                                          .getArticleInfo();
+                                          .getArticleInfo(
+                                              articleId:
+                                                  singlePageArticleController
+                                                      .relatedList[index].id!);
                                     },
                                     child: Column(
                                       children: [
@@ -313,7 +300,9 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
             }),
           ),
           // app bar
-          singlePageAppBar(context: context),
+          singlePageAppBar(
+              context: context,
+              article: singlePageArticleController.articleInfoModel.value),
         ]));
   }
 }

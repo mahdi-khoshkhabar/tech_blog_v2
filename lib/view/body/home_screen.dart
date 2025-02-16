@@ -1,10 +1,10 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tech_blog_v2/controller/home_screen_controller.dart';
+import 'package:tech_blog_v2/controller/list_article_controller.dart';
+import 'package:tech_blog_v2/controller/single_page_article_controller.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/model/items.dart';
 import 'package:tech_blog_v2/model/mini_topic.dart';
@@ -24,8 +24,13 @@ class HomeScreen extends StatelessWidget {
     required this.podCastItemPosterSize,
   });
 
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  ItemsBasicIngredients items = ItemsBasicIngredients();
+  final HomeScreenController homeScreenController =
+      Get.put(HomeScreenController());
+  final SinglePageArticleController singlePageArticleController =
+      Get.put(SinglePageArticleController());
+  final ListArticleController listArticleController =
+      Get.put(ListArticleController());
+  final ItemsBasicIngredients items = ItemsBasicIngredients();
 
   final Size blogItemPosterSize;
   final Size podCastItemPosterSize;
@@ -58,8 +63,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.of(context).push(CupertinoPageRoute(
-                          builder: (context) =>
-                               const ArticleListScreen(),
+                          builder: (context) => ArticleListScreen(),
                         ));
                       },
                     ),
@@ -116,74 +120,80 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(SizeController(context).screenPadding, 10,
           SizeController(context).screenPadding, 0),
-      child: Stack(
-        children: [
-          Container(
-            height: SizeController(context).size.height / 4.5,
-            foregroundDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: GradientColors.homePosterCoverGradiant)),
-            child: CachedNetworkImage(
-              imageUrl: homeScreenController.poster.value.image!,
-              imageBuilder: (context, imageProvider) {
-                return Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover),
-                  ),
-                  foregroundDecoration: BoxDecoration(
+      child: GestureDetector(
+        onTap: () {
+          singlePageArticleController.getArticleInfo(
+              articleId: homeScreenController.poster.value.id!);
+        },
+        child: Stack(
+          children: [
+            Container(
+              height: SizeController(context).size.height / 4.5,
+              foregroundDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: GradientColors.homePosterCoverGradiant)),
+              child: CachedNetworkImage(
+                imageUrl: homeScreenController.poster.value.image!,
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                          colors: GradientColors.homeScreenItemPosterColor,
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter)),
-                );
-              },
-              placeholder: (context, url) {
-                return const SpinKitFadingCube(
-                  color: SolidColors.primaryColor,
-                  size: 50.0,
-                );
-              },
-              errorWidget: (context, url, error) {
-                return Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                          colors: GradientColors.homeScreenItemPosterColor,
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter)),
-                  child: const Icon(
-                    Icons.image_not_supported_outlined,
-                    color: Colors.black,
-                    size: 50,
-                  ),
-                );
-              },
-            ),
-          ),
-          // Poster details
-          Positioned(
-            bottom: 10,
-            left: 15,
-            right: 15,
-            child: SizedBox(
-              width: SizeController(context).size.width / 1.5,
-              child: Text(
-                textDirection: TextDirection.rtl,
-                homeScreenController.poster.value.title!,
-                style: TextStyleLib().posterTitle,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                    foregroundDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: const LinearGradient(
+                            colors: GradientColors.homeScreenItemPosterColor,
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter)),
+                  );
+                },
+                placeholder: (context, url) {
+                  return const SpinKitFadingCube(
+                    color: SolidColors.primaryColor,
+                    size: 50.0,
+                  );
+                },
+                errorWidget: (context, url, error) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: const LinearGradient(
+                            colors: GradientColors.homeScreenItemPosterColor,
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter)),
+                    child: const Icon(
+                      Icons.image_not_supported_outlined,
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                  );
+                },
               ),
             ),
-          ),
-        ],
+            // Poster details
+            Positioned(
+              bottom: 10,
+              left: 15,
+              right: 15,
+              child: SizedBox(
+                width: SizeController(context).size.width / 1.5,
+                child: Text(
+                  textDirection: TextDirection.rtl,
+                  homeScreenController.poster.value.title!,
+                  style: TextStyleLib().posterTitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -250,33 +260,39 @@ class HomeScreen extends StatelessWidget {
                   ? EdgeInsets.fromLTRB(
                       SizeController(context).screenPadding, 0, 16, 0)
                   : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-              child: Column(
-                children: [
-                  // Article poster
-                  items.poster(
-                    imageUrl: homeScreenController.topVisited[index].image!,
-                    auther: homeScreenController.topVisited[index].author!,
-                    view: homeScreenController.topVisited[index].view,
-                    size: SizeController(context).size,
-                    ownerTextDirection: TextDirection.rtl,
-                    itemPosterSize: SizeController.blogItemSize,
-                    showAuthor: true,
-                    showViews: true,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  items.title(
-                      Text(
-                        homeScreenController.topVisited[index].title ??
-                            MyStrings.blogItemDefaultTitle,
-                        style: TextStyleLib().blogItemTitle,
-                      ),
-                      homeScreenController.topVisited[index].image!.length +
-                          50.toDouble(),
-                      null,
-                      TextDirection.rtl)
-                ],
+              child: GestureDetector(
+                onTap: () {
+                  singlePageArticleController.getArticleInfo(
+                      articleId: homeScreenController.topVisited[index].id!);
+                },
+                child: Column(
+                  children: [
+                    // Article poster
+                    items.poster(
+                      imageUrl: homeScreenController.topVisited[index].image!,
+                      auther: homeScreenController.topVisited[index].author!,
+                      view: homeScreenController.topVisited[index].view,
+                      size: SizeController(context).size,
+                      ownerTextDirection: TextDirection.rtl,
+                      itemPosterSize: SizeController.blogItemSize,
+                      showAuthor: true,
+                      showViews: true,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    items.title(
+                        Text(
+                          homeScreenController.topVisited[index].title ??
+                              MyStrings.blogItemDefaultTitle,
+                          style: TextStyleLib().blogItemTitle,
+                        ),
+                        homeScreenController.topVisited[index].image!.length +
+                            50.toDouble(),
+                        null,
+                        TextDirection.rtl)
+                  ],
+                ),
               ),
             );
           },
@@ -300,8 +316,20 @@ class HomeScreen extends StatelessWidget {
                       ? EdgeInsets.fromLTRB(
                           SizeController(context).screenPadding, 0, 16, 0)
                       : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                  child:
-                      BlackTagBox(tagModel: homeScreenController.tags[index]));
+                  child: GestureDetector(
+                    child:
+                        BlackTagBox(tagModel: homeScreenController.tags[index]),
+                    onTap: () {
+                      Get.to(
+                        ArticleListScreenWithTagId(
+                          title: homeScreenController.tags[index].title,
+                        ),
+                      );
+                      var tagId = homeScreenController.tags[index].id!;
+                      listArticleController.getArticleListWithTagId(
+                          tagId: tagId);
+                    },
+                  ));
             },
           )),
     );
