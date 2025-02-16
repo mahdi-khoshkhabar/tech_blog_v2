@@ -16,7 +16,6 @@ import 'package:tech_blog_v2/utils/my_colors.dart';
 import 'package:tech_blog_v2/utils/my_string.dart';
 import 'package:tech_blog_v2/utils/my_utils.dart';
 import 'package:tech_blog_v2/utils/text_style.dart';
-import 'package:tech_blog_v2/view/artile_list_screen.dart';
 
 class ArticleSinglePage extends StatefulWidget {
   const ArticleSinglePage({
@@ -50,9 +49,11 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
               Brightness.light, // برای تنظیم رنگ آیکون‌ها (سفید یا مشکی)
         ),
         child: Stack(children: [
+          // body
           Scaffold(
             backgroundColor: SolidColors.backgroundColor,
             body: Obx(() {
+              // Loading
               if (singlePageArticleController.isLoading.isTrue) {
                 return Center(child: loading());
               } else {
@@ -170,7 +171,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                         const SizedBox(
                           height: 120,
                         ),
-                        // Hash tag bar
+                        // tag bar
                         SingleChildScrollView(
                           child: SizedBox(
                               width: double.infinity,
@@ -191,19 +192,13 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                           : const EdgeInsets.fromLTRB(
                                               0, 0, 16, 0),
                                       child: GestureDetector(
-                                        onTap: () async {
+                                        onTap: () {
                                           var tagId =
                                               singlePageArticleController
                                                   .tagsList[index].id!;
-                                          await listArticleController
-                                              .getArticleListWithTagId(tagId);
-                                          Get.off(
-                                              () => ArticleListScreenWithTagId(
-                                                    title:
-                                                        singlePageArticleController
-                                                            .tagsList[index]
-                                                            .title,
-                                                  ));
+                                          listArticleController
+                                              .getArticleListWithTagId(
+                                                  tagId: tagId);
                                         },
                                         child: WhiteTagBox(
                                           tagModel: singlePageArticleController
@@ -254,41 +249,56 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
                                           16,
                                           0)
                                       : const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                                  child: Column(
-                                    children: [
-                                      // Article poster
-                                      items.poster(
-                                        imageUrl: singlePageArticleController
-                                            .relatedList[index].image!,
-                                        auther: singlePageArticleController
-                                            .relatedList[index].author,
-                                        view: singlePageArticleController
-                                            .relatedList[index].view,
-                                        size: SizeController(context).size,
-                                        ownerTextDirection: TextDirection.rtl,
-                                        itemPosterSize:
-                                            SizeController.blogItemSize,
-                                        showAuthor: true,
-                                        showViews: true,
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      items.title(
-                                          Text(
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      singlePageArticleController
+                                              .articleId.value =
+                                          int.parse(singlePageArticleController
+                                              .relatedList[index].id
+                                              .toString());
+                                      log('articleId: ${singlePageArticleController.articleId.value}',
+                                          name: 'related article');
+                                      // Get.to(() => const ArticleSinglePage());
+                                      singlePageArticleController
+                                          .getArticleInfo();
+                                    },
+                                    child: Column(
+                                      children: [
+                                        // Article poster
+                                        items.poster(
+                                          imageUrl: singlePageArticleController
+                                              .relatedList[index].image!,
+                                          auther: singlePageArticleController
+                                              .relatedList[index].author,
+                                          view: singlePageArticleController
+                                              .relatedList[index].view,
+                                          size: SizeController(context).size,
+                                          ownerTextDirection: TextDirection.rtl,
+                                          itemPosterSize:
+                                              SizeController.blogItemSize,
+                                          showAuthor: true,
+                                          showViews: true,
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        items.title(
+                                            Text(
+                                              singlePageArticleController
+                                                  .relatedList[index].title!,
+                                              style:
+                                                  TextStyleLib().blogItemTitle,
+                                            ),
                                             singlePageArticleController
-                                                .relatedList[index].title!,
-                                            style: TextStyleLib().blogItemTitle,
-                                          ),
-                                          singlePageArticleController
-                                                  .articleInfoModel
-                                                  .value
-                                                  .image!
-                                                  .length +
-                                              50.toDouble(),
-                                          null,
-                                          TextDirection.rtl)
-                                    ],
+                                                    .articleInfoModel
+                                                    .value
+                                                    .image!
+                                                    .length +
+                                                50.toDouble(),
+                                            null,
+                                            TextDirection.rtl)
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
@@ -302,6 +312,7 @@ class _ArticleSinglePageState extends State<ArticleSinglePage> {
               }
             }),
           ),
+          // app bar
           singlePageAppBar(context: context),
         ]));
   }
