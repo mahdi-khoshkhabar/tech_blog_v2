@@ -100,11 +100,6 @@ Future<dynamic> activateCodeBottomSheet(BuildContext context) {
                   cursorErrorColor: const Color(0xFFB3271E),
                   controller: registerController.oneTimePasswordController,
                   onChanged: (value) {
-                    if (value.length != 6) {
-                      isPasswordLengthEnough = false;
-                    } else {
-                      isPasswordLengthEnough = true;
-                    }
                   },
                 ),
               ),
