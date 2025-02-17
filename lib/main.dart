@@ -1,15 +1,19 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/components/my_colors.dart';
+import 'package:tech_blog_v2/my_http_overrides.dart';
 import 'package:tech_blog_v2/view/splash_screen.dart';
 
 void main() async {
+  // Allow all https requests
+  HttpOverrides.global = MyHttpOverrides();
   await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: SolidColors.statusBarColor,
