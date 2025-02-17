@@ -1,7 +1,4 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog_v2/controller/register_controller.dart';
@@ -9,7 +6,6 @@ import 'package:tech_blog_v2/model/buttons.dart';
 import 'package:tech_blog_v2/components/my_colors.dart';
 import 'package:tech_blog_v2/components/my_string.dart';
 import 'package:tech_blog_v2/themes.dart';
-import 'package:tech_blog_v2/view/register/complete_information_screen.dart';
 
 Future<dynamic> showEmailBottomSheet(BuildContext context) {
   final RegisterController registerController = Get.put(RegisterController());
@@ -68,7 +64,6 @@ Future<dynamic> showEmailBottomSheet(BuildContext context) {
 
 Future<dynamic> activateCodeBottomSheet(BuildContext context) {
   final RegisterController registerController = Get.put(RegisterController());
-  bool isPasswordLengthEnough = false;
   return showModalBottomSheet(
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
