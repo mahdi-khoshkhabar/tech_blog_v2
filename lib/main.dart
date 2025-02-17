@@ -4,11 +4,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog_v2/controller/size_controller.dart';
 import 'package:tech_blog_v2/components/my_colors.dart';
 import 'package:tech_blog_v2/view/splash_screen.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: SolidColors.statusBarColor,
       statusBarIconBrightness: Brightness.dark,
