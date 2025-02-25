@@ -52,7 +52,7 @@ class RegisterController extends GetxController {
       box.write(userId, response.data['user_id']);
       log('token: ${box.read(token)}');
       log('userId: ${box.read(userId)}');
-      Get.offAll(const CompleteInfoScreen());
+      Get.offAll(() => const CompleteInfoScreen());
     } else {
       Get.snackbar('Error', 'Invalid code');
     }
