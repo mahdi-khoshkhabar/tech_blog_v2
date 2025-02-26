@@ -55,13 +55,34 @@ class RegisterController extends GetxController {
         break;
 
       case 'incorrect_code':
-        Get.snackbar('Error', 'Invalid code');
+        // Get.snackbar('Error', 'Invalid code');
+        errorSnackBar(message: 'Invalid code');
+        debugPrint('Invalid code');
         break;
 
       case 'expired':
-        Get.snackbar('Error', 'Code expired');
+        errorSnackBar(message: 'Code expired');
         break;
     }
+  }
+
+  SnackbarController errorSnackBar({required String message}) {
+    return Get.showSnackbar(GetSnackBar(
+      title: 'Error',
+      message: message,
+      duration: const Duration(seconds: 2),
+      backgroundColor: Colors.red,
+      borderRadius: 20,
+      maxWidth: Get.width * 0.8,
+      boxShadows: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.5),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: const Offset(0, 3),
+        )
+      ],
+    ));
   }
 
   toggleLogin() {
