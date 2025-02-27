@@ -107,4 +107,19 @@ Share your knowledge with the Persian-speaking geek community...
   static String blogItemDefaultTitle = "No Title Provided ):";
   static const String writeScreenWelcome =
       "Welcome to Tak Blog\n\nTo submit articles and podcasts, you must register first.";
+
+      // page routes
+  static const String routeMainScreen = "/main_screen";
+  static const String routeArticleListScreen = "/article_list_screen";
+  static const String routePodcastListScreen = "/podcast_list_screen";
+  static const String routeArticleListWithTagIdScreen = "/article_list_with_tag_id_screen";
+  static const String routePodcastListWithTagIdScreen = "/podcast_list_with_tag_id_screen";
+  static const String routeArticleSinglePageScreen = "/article_content_screen";
+  static const String routePodcastContentScreen = "/podcast_content_screen";
+  static const String routeSubmitArticleScreen = "/submit_article_screen";
+  static const String routeSubmitPodcastScreen = "/submit_podcast_screen";
+  static const String routeProfileScreen = "/profile_screen";
+  static const String routeEditProfileScreen = "/edit_profile_screen";
+  static const String routeMyFavBlogScreen = "/my_fav_blog_screen";
+  static const String routeMyFavPodcastScreen = "/my_fav_podcast_screen";
 }

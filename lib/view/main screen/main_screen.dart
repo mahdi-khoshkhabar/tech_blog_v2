@@ -22,13 +22,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size blogItemPosterSize = SizeController(context).blogItemPosterSize;
-    Size podCastItemPosterSize = SizeController(context).podcastItemPosterSize;
-    double borderRadiusController = 20;
-
-    RegisterController _registerController =
-        Get.put(RegisterController(), permanent: true);
-
     return Scaffold(
       key: _key,
       drawer: const MyDrawer(),
@@ -42,8 +35,10 @@ class MainScreen extends StatelessWidget {
               index: selectedBody.value,
               children: [
                 HomeScreen(
-                    blogItemPosterSize: blogItemPosterSize,
-                    podCastItemPosterSize: podCastItemPosterSize),
+                    blogItemPosterSize:
+                        SizeController(context).blogItemPosterSize,
+                    podCastItemPosterSize:
+                        SizeController(context).podcastItemPosterSize),
                 const ProfileScreen(),
               ],
             ),
@@ -68,8 +63,7 @@ class MainScreen extends StatelessWidget {
                     25),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(borderRadiusController),
+                      borderRadius: BorderRadius.circular(20),
                       gradient: const LinearGradient(
                           colors: GradientColors.bottomNav)),
                   child: Row(
@@ -91,7 +85,7 @@ class MainScreen extends StatelessWidget {
                       // write button
                       IconButton(
                           onPressed: () {
-                            _registerController.toggleLogin();
+                            Get.find<RegisterController>().toggleLogin();
                           },
                           icon: ImageIcon(
                             Assets.icons.write.provider(),

@@ -87,7 +87,7 @@ class RegisterController extends GetxController {
 
   toggleLogin() {
     if (GetStorage().read(token) == null) {
-      Get.offAll(() => const SignUpScreen());
+      Get.to(() => const SignUpScreen());
     } else {
       Get.snackbar('Congrats', 'You are already logged in',
           backgroundColor: Colors.green);

@@ -50,7 +50,7 @@ Future<dynamic> showEmailBottomSheet(BuildContext context) {
                 function: () {
                   registerController.register();
                   log('email buttom presssed');
-                  Navigator.pop(context);
+                  Get.back();
                   activateCodeBottomSheet(context);
                 },
               )
@@ -99,8 +99,7 @@ Future<dynamic> activateCodeBottomSheet(BuildContext context) {
                   cursorColor: SolidColors.primaryColor,
                   cursorErrorColor: const Color(0xFFB3271E),
                   controller: registerController.oneTimePasswordController,
-                  onChanged: (value) {
-                  },
+                  onChanged: (value) {},
                 ),
               ),
               MyPurpleButton(

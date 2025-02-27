@@ -20,9 +20,9 @@ import 'package:tech_blog_v2/view/main%20screen/artile_list_screen.dart';
 
 class ArticleSinglePage extends StatelessWidget {
   final SinglePageArticleController singlePageArticleController =
-      Get.put(SinglePageArticleController());
+      Get.find<SinglePageArticleController>();
   final ListArticleController listArticleController =
-      Get.put(ListArticleController());
+      Get.find<ListArticleController>();
 
   ArticleSinglePage({super.key});
 
